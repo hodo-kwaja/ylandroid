@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        // 출발역
+        <TextView
+            android:id="@+id/departure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="출발역 :"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/Edit1"
+            android:layout_width="235dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="3dp"
+            android:hint="출발역을 입력하세요      "
+            android:minHeight="48dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        // 도착역
+        <TextView
+            android:id="@+id/arrival"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="도착역 :"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/Edit2"
+            android:layout_width="235dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="도착역을 입력하세요      "
+            android:minHeight="48dp" />
+
+        <ImageButton
+            android:id="@+id/button1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/white"
+            app:srcCompat="@android:drawable/ic_menu_search" />
+
+    </LinearLayout>
+
+    // 노선도 이미지
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/photoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
+</LinearLayout>
+

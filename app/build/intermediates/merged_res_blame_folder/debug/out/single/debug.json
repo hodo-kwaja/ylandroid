@@ -1,0 +1,102 @@
+[
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_map2.png.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\drawable-v24\\map2.png"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_main_hodu.png.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\drawable-v24\\main_hodu.png"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\layout_input.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\layout\\input.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\font_nanum.ttf.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\font\\nanum.ttf"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\layout_route_time.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\layout\\route_time.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\font_font.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\font\\font.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\layout_search.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\layout\\search.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\layout_main.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\layout_row_listview.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\layout\\row_listview.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\layout_route_congestion.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\layout\\route_congestion.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\layout_route_transfer.xml.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\layout\\route_transfer.xml"
+    },
+    {
+        "merged": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Public\\Documents\\hodu_metro\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
+    }
+]
