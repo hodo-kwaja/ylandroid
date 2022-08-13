@@ -34,7 +34,8 @@
         <activity android:name="com.example.hodu_metro.Input" />
         <activity android:name="com.example.hodu_metro.Search" />
         <activity android:name="com.example.hodu_metro.RouteTime" />
-        <activity android:name="com.example.hodu_metro.RouteTime" />
+        <activity android:name="com.example.hodu_metro.RouteCongest" />
+        <activity android:name="com.example.hodu_metro.RouteTransfer" />
         <activity android:name="com.example.hodu_metro.SearchAdapter" />
 
         <provider

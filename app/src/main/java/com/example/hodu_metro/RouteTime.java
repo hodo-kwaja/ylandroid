@@ -7,7 +7,10 @@ import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,11 +29,35 @@ public class RouteTime extends AppCompatActivity {
     TextView numStep_textview;
     TextView transferNum_textview;
 
+    LinearLayout listView; // 레이아웃 객체 생성
+    Button createTextView; // 버튼 객체 생성
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_time);
 
+        //////////////////////////////////////////////////////////////////////////////
+        //최소환승 버튼 클릭시 화면 전환
+        TextView min_transfer=(TextView) findViewById(R.id.min_transfer);
+        min_transfer.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RouteTransfer.class);
+                startActivity(intent);
+            }
+        });
+
+        //혼잡도 버튼 클릭시 화면 전환
+        TextView congestion=(TextView) findViewById(R.id.congestion);
+        congestion.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RouteCongest.class);
+                startActivity(intent);
+            }
+        });
+
+        /////////////////////////////////////////////////////////////////////////////
+        
         //xml 아이디 - textview 지정
         duration_textview = findViewById(R.id.duration);
         numStep_textview = findViewById(R.id.numStep);
@@ -105,24 +132,94 @@ public class RouteTime extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        listView = findViewById(R.id. listView);
+        createTextView=findViewById(R.id.createTextView);
 
-        //최소환승 버튼 클릭시 화면 전환
-        TextView min_transfer=(TextView) findViewById(R.id.min_transfer);
-        min_transfer.setOnClickListener(new View.OnClickListener(){
+        createTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RouteTransfer.class);
-                startActivity(intent);
-            }
-        });
 
-        //혼잡도 버튼 클릭시 화면 전환
-        TextView congestion=(TextView) findViewById(R.id.congestion);
-        congestion.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RouteCongest.class);
-                startActivity(intent);
+                createBigView();
+
+                int cnt=5;
+                for(int i=0;i<cnt;i++) {
+                    createSmallView();
+                }
             }
         });
 
     }
+    private void createBigView(){
+
+        //1. 텍스트뷰 객체생성
+        TextView textViewNm = new TextView(getApplicationContext());
+
+        //2. 텍스트뷰에 들어갈 문자설정
+        textViewNm.setText("출발역");
+
+        //3. 텍스트뷰 글자크기 설정
+        textViewNm.setTextSize(20);//텍스트 크기
+
+        //4. 텍스트뷰 글자타입 설정
+        textViewNm.setTypeface(null, Typeface.BOLD);
+
+        //5. 텍스트뷰 ID설정
+        textViewNm.setId(0);
+
+        //6. 레이아웃 설정
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
+                ,LinearLayout.LayoutParams.WRAP_CONTENT);
+        param.leftMargin = 30;
+        param.bottomMargin=12;
+        param.topMargin=12;
+
+
+        // 7. 설정한 레이아웃 텍스트뷰에 적용
+        textViewNm.setLayoutParams(param);
+
+        //8. 텍스트뷰 백그라운드색상 설정
+        textViewNm.setBackgroundColor(Color.rgb(255,255,255));
+
+        //9. 생성및 설정된 텍스트뷰 레이아웃에 적용
+        listView.addView(textViewNm);
+    }
+
+    private void createSmallView(){
+
+        //1. 텍스트뷰 객체생성
+        TextView textViewNm = new TextView(getApplicationContext());
+
+        //2. 텍스트뷰에 들어갈 문자설정
+        textViewNm.setText("경유역");
+
+        //3. 텍스트뷰 글자크기 설정
+        textViewNm.setTextSize(15);//텍스트 크기
+
+        //4. 텍스트뷰 글자타입 설정
+        textViewNm.setTypeface(null, Typeface.NORMAL);
+
+        //5. 텍스트뷰 ID설정
+        textViewNm.setId(0);
+
+        //6. 레이아웃 설정
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
+                ,LinearLayout.LayoutParams.WRAP_CONTENT);
+        param.leftMargin = 30;
+        param.bottomMargin=12;
+        param.topMargin=12;
+
+
+        // 7. 설정한 레이아웃 텍스트뷰에 적용
+        textViewNm.setLayoutParams(param);
+
+        //8. 텍스트뷰 백그라운드색상 설정
+        textViewNm.setBackgroundColor(Color.rgb(255,255,255));
+
+        //9. 생성및 설정된 텍스트뷰 레이아웃에 적용
+        listView.addView(textViewNm);
+    }
+
+
+
+
 }

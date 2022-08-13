@@ -18,6 +18,7 @@ id Edit2
 id arrival
 id button1
 id congestion
+id createTextView
 id departure
 id duration
 id editSearch
