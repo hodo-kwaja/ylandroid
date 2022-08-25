@@ -2,6 +2,8 @@ package com.example.hodu_metro;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -65,6 +67,24 @@ public class RouteTime extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_time);
+
+        //최소환승 버튼 클릭시 화면 전환
+        TextView min_transfer=(TextView) findViewById(R.id.min_transfer);
+        min_transfer.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RouteTransfer.class);
+                startActivity(intent);
+            }
+        });
+
+        //혼잡도 버튼 클릭시 화면 전환
+        TextView congestion=(TextView) findViewById(R.id.congestion);
+        congestion.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RouteCongest.class);
+                startActivity(intent);
+            }
+        });
 
         listView = findViewById(R.id. listView);
 
@@ -206,6 +226,7 @@ public class RouteTime extends AppCompatActivity {
 
     }
 
+
     private void createBigView(){
 
         for(int i=0;i<numStep_+2;i++) {
@@ -214,11 +235,45 @@ public class RouteTime extends AppCompatActivity {
             TextView textViewTransfer = new TextView(getApplicationContext());
             textViewNm.setText(staitonName_tt[i]);
 
+
+
+            if(i==0){ //출발역 텍스트 크기 지정
+                textViewTime.setText(hourminute_t[i]);
+                listView.addView(textViewTime);
+                listView.addView(textViewNm);
+                textViewNm.setTextSize(25);
+
+            }
+            else if(i==count[i]){
+                //환승역 텍스트 크기 지정
+                textViewNm.setTextSize(25);
+                textViewTime.setText(hourminute_t[i]);
+                textViewTransfer.setText(transferTime_t[i]);
+                listView.addView(textViewTime);
+                listView.addView(textViewNm);
+                listView.addView(textViewTransfer);
+
+            }
+            else if(i==numStep_+1){
+                //도착역 텍스트 크기 지정
+                textViewTime.setText(hourminute_t[i]);
+                textViewNm.setTextSize(25);
+                listView.addView(textViewTime);
+                listView.addView(textViewNm);
+            }
+            else{
+                //경유역 텍스트 크기 지정
+                textViewNm.setTextSize(15);
+                listView.addView(textViewNm);
+            }
+
             //4. 텍스트뷰 글자타입 설정
             textViewNm.setTypeface(null, Typeface.BOLD);
 
             //5. 텍스트뷰 ID설정
             textViewNm.setId(i);
+            textViewTransfer.setId(i);
+            textViewTime.setId(i);
 
             //6. 레이아웃 설정
             LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
@@ -227,63 +282,36 @@ public class RouteTime extends AppCompatActivity {
             param.bottomMargin = 12;
             param.topMargin = 12;
 
+            LinearLayout.LayoutParams param1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
+                    , LinearLayout.LayoutParams.WRAP_CONTENT);
+            param1.leftMargin = 30;
+            //param1.bottomMargin = 12;
+            param1.topMargin = 5;
+
+            LinearLayout.LayoutParams param3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
+                    , LinearLayout.LayoutParams.WRAP_CONTENT);
+            param3.bottomMargin = 12;
+            param3.topMargin = 5;
+
             // 7. 설정한 레이아웃 텍스트뷰에 적용
             textViewNm.setLayoutParams(param);
 
             //8. 텍스트뷰 백그라운드색상 설정
             textViewNm.setBackgroundColor(Color.rgb(0, 255, 255));
+            textViewTransfer.setBackgroundColor(Color.rgb(255, 0, 255));
+            textViewTime.setBackgroundColor(Color.rgb(255, 255, 0));
 
             //9. 생성및 설정된 텍스트뷰 레이아웃에 적용
-            listView.addView(textViewNm);
 
-
-            if(i==0){ //출발역 텍스트 크기 지정
-                textViewNm.setTextSize(25);
-                textViewTime.setText(hourminute_t[i]);
-            }
-            else if(i==count[i]){
-                //환승역 텍스트 크기 지정
-                textViewNm.setTextSize(25);
-                textViewTransfer.setText(transferTime_t[i]);
-
-                textViewTransfer.setId(i);
-
-                LinearLayout.LayoutParams param1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
-                        , LinearLayout.LayoutParams.WRAP_CONTENT);
-                param1.leftMargin = 30;
-                //param1.bottomMargin = 12;
-                param1.topMargin = 5;
-
-                textViewTransfer.setLayoutParams(param1);
-
-                textViewTransfer.setBackgroundColor(Color.rgb(255, 0, 255));
-
-                listView.addView(textViewTransfer);
-                ///////////
-                textViewTime.setText(hourminute_t[i]);
-                textViewTime.setId(i);
-
-                LinearLayout.LayoutParams param3 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
-                        , LinearLayout.LayoutParams.WRAP_CONTENT);
-                param3.bottomMargin = 12;
-                param3.topMargin = 5;
-
-                textViewTime.setLayoutParams(param3);
-
-                textViewTime.setBackgroundColor(Color.rgb(255, 255, 0));
-
-                listView.addView(textViewTime);
-            }
-            else if(i==numStep_+1){
-                //도착역 텍스트 크기 지정
-                textViewNm.setTextSize(25);
-                textViewTime.setText(hourminute_t[i]);
-            }
-            else{
-                //경유역 텍스트 크기 지정
-                textViewNm.setTextSize(15);
-            }
         }
+    }
+
+    @Override public void onBackPressed() {
+
+        super.onBackPressed();
+
+        startActivity(new Intent(getApplicationContext(),Input.class));
+
     }
 
     /*private void createSmallView(){

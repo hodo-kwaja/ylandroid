@@ -1,6 +1,7 @@
 package com.example.hodu_metro;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,27 +33,29 @@ public class Input extends AppCompatActivity {
     static String week; //요일
 
     String text;
-    static int count =0;
+    static int count = 0;
+
+    private long pressedTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input);
 
-        EditText departure=(EditText) findViewById(R.id.Edit1);// 출발역 입력칸
-        EditText arrival=(EditText) findViewById(R.id.Edit2); // 도착역 입력칸
+        EditText departure = (EditText) findViewById(R.id.Edit1);// 출발역 입력칸
+        EditText arrival = (EditText) findViewById(R.id.Edit2); // 도착역 입력칸
 
         Intent intent = getIntent();
         intent = getIntent();
-        text= intent.getStringExtra("selected_item"); //search 액티비티에서 역이름 받아오기
+        text = intent.getStringExtra("selected_item"); //search 액티비티에서 역이름 받아오기
 
-        if(count==1) { //출발역
+        if (count == 1) { //출발역
             departure_text = text;
             departure.setText(departure_text);
             count = 0;
             arrival.setText(arrival_text);
-        }
-        else if(count==2){ //도착역
+        } else if (count == 2) { //도착역
             arrival_text = text;
             departure.setText(departure_text);
             arrival.setText(arrival_text);
@@ -66,28 +70,28 @@ public class Input extends AppCompatActivity {
         photoView.setImageResource(R.drawable.map2);
 
         // 출발역 텍스트박스 클릭시 액티비티 전환
-        departure.setOnClickListener(new View.OnClickListener(){
+        departure.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                count=1;
+            public void onClick(View view) {
+                count = 1;
                 Intent intent = new Intent(getApplicationContext(), Search.class); //search 액티비티로 전환
                 startActivity(intent);
             }
         });
 
         // 도착역 텍스트박스 클릭시 액티비티 전환
-        arrival.setOnClickListener(new View.OnClickListener(){
+        arrival.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                count=2;
+            public void onClick(View view) {
+                count = 2;
                 Intent intent = new Intent(getApplicationContext(), Search.class); //search 액티비티로 전환
                 startActivity(intent);
             }
         });
 
         //검색 버튼 클릭시 액티비티 전환
-        ImageButton search_button=(ImageButton) findViewById(R.id.button1);
-        search_button.setOnClickListener(new View.OnClickListener(){
+        ImageButton search_button = (ImageButton) findViewById(R.id.button1);
+        search_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 //버튼 클릭하면 현재시간, 요일 구함
@@ -108,10 +112,10 @@ public class Input extends AppCompatActivity {
                     week = "a";
                 else week = "u";
 
-                Log.d("출발역","출발역: "+departure_text);
-                Log.d("도착역","도착역: "+arrival_text);
-                Log.d("현재시간날짜","now: "+ formattedNow);
-                Log.d("현재시간날짜","요일: "+week);
+                Log.d("출발역", "출발역: " + departure_text);
+                Log.d("도착역", "도착역: " + arrival_text);
+                Log.d("현재시간날짜", "now: " + formattedNow);
+                Log.d("현재시간날짜", "요일: " + week);
 
 
                 //////////////////////json 파싱/////////////////////////////////
@@ -122,14 +126,14 @@ public class Input extends AppCompatActivity {
                 List.add(2, formattedNow);
                 List.add(3,week);*/
 
-                JSONObject obj =new JSONObject();
+                JSONObject obj = new JSONObject();
                 try {
-                    obj.put("departure",departure_text);
-                    obj.put("arrival",arrival_text);
-                    obj.put("now",formattedNow);
-                    obj.put("week",week);
+                    obj.put("departure", departure_text);
+                    obj.put("arrival", arrival_text);
+                    obj.put("now", formattedNow);
+                    obj.put("week", week);
 
-                    Log.d("json확인","확인: "+obj.toString());
+                    Log.d("json확인", "확인: " + obj.toString());
 
                 } catch (JSONException ex) {
                     ex.printStackTrace();
@@ -140,6 +144,14 @@ public class Input extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override public void onBackPressed() {
+
+        super.onBackPressed();
+
+        ActivityCompat.finishAffinity(this); // 액티비티를 종료하고
+        System.exit(0); // 프로세스를 종료
 
     }
 
