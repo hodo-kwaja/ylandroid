@@ -1,12 +1,19 @@
 package com.example.hodu_metro;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
-import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -17,12 +24,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 
 import android.view.View;
 import android.graphics.Typeface;
+
+import com.kyleduo.switchbutton.SwitchButton;
 
 
 public class RouteTime extends AppCompatActivity {
@@ -32,6 +47,12 @@ public class RouteTime extends AppCompatActivity {
     TextView transferNum_textview;  //환승 횟수
 
     LinearLayout listView; // 레이아웃 객체 생성
+
+    private AlarmManager alarmManager;
+    private GregorianCalendar mCalender;
+
+    private NotificationManager notificationManager;
+    NotificationCompat.Builder builder;
 
     int numStep_ = 0;
     int[] countf= new int[100];
@@ -51,6 +72,13 @@ public class RouteTime extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_time);
+
+        ////알람기능//
+        notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        mCalender = new GregorianCalendar();
+        Log.v("HelloAlarmActivity", mCalender.getTime().toString());
+        /////
 
         /////////////////////////////////////////////////////
         //최소환승 버튼 클릭시 화면 전환
@@ -84,7 +112,7 @@ public class RouteTime extends AppCompatActivity {
         //assets/ test.json 파일 읽기 위한 InputStream
         try {
             //InputStream is = assetManager.open("test.json"); //환승 1회
-            InputStream is = assetManager.open("test6.json"); //환승 2회
+            InputStream is = assetManager.open("test.json"); //환승 2회
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
 
@@ -221,11 +249,124 @@ public class RouteTime extends AppCompatActivity {
             transferNum_textview.setText(transferNum_t);
 
 
+            //접수일 알람 버튼
+            Button button = (Button) findViewById(R.id.switchButton);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setAlarm();
+                }
+            });
+
+
+//////////////////진동 울리기//////////////////
+/*
+            SwitchButton switchButton = (SwitchButton) findViewById(R.id.switchButton);
+            switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                    long now = System.currentTimeMillis();
+                    Date date = new Date(now);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("H:m");
+                    String getTime = dateFormat.format(date);
+
+                    // 스위치 버튼이 체크되었는지 검사하여 진동 울리기
+                    if (isChecked){
+
+                        if(hourminute_t[numStep_ - 2].compareTo(getTime)<0){
+                            return;
+                        }
+
+                        while(!getTime.equals(hourminute_t[numStep_ - 2])){
+                            now = System.currentTimeMillis();
+                            date = new Date(now);
+                            dateFormat = new SimpleDateFormat("H:m");
+                            getTime = dateFormat.format(date);
+
+                            Log.d("현재시간", "현재시간: " + getTime);
+                            Log.d("도착시간", "도착시간: " + hourminute_t[numStep_ - 2]);
+
+                        }
+                        for(int j=0;j<3;j++) {
+                            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                            vibrator.vibrate(1000); // 1초간 진동
+                            break;
+                        }
+
+                    }
+                }
+            });
+*/
+
+            ////////////////////////////////////////
+
+/*
+            Button button1 = (Button) findViewById(R.id.eventButton) ;
+            button1.setOnClickListener(new Button.OnClickListener() {
+                String getTime;
+                @Override
+                public void onClick(View view) {
+                    long now = System.currentTimeMillis();
+                    Date date = new Date(now);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("H:m");
+                    String getTime = dateFormat.format(date);
+
+                    // 스위치 버튼이 체크되었는지 검사하여 진동 울리기
+                    if(hourminute_t[numStep_ - 2].compareTo(getTime)<0){
+                        return;
+                    }
+
+                    while(!getTime.equals(hourminute_t[numStep_ - 2])){
+                        now = System.currentTimeMillis();
+                        date = new Date(now);
+                        dateFormat = new SimpleDateFormat("H:m");
+                        getTime = dateFormat.format(date);
+
+                        Log.d("현재시간", "현재시간: " + getTime);
+                        Log.d("도착시간", "도착시간: " + hourminute_t[numStep_ - 2]);
+
+                    }
+                    for(int j=0;j<3;j++) {
+                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibrator.vibrate(1000); // 1초간 진동
+                        break;
+                    }
+
+                }
+            });*/
+
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+    }
+
+    private void setAlarm() {
+        //AlarmReceiver에 값 전달
+        Intent receiverIntent = new Intent(RouteTime.this, AlarmRecevier.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(RouteTime.this, 0, receiverIntent, 0);
+
+        String from = "2022-09-12 22:55:00"; //임의로 날짜와 시간을 지정
+
+        //날짜 포맷을 바꿔주는 소스코드
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date datetime = null;
+        try {
+            datetime = dateFormat.parse(from);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(datetime);
+
+        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),pendingIntent);
 
 
     }
