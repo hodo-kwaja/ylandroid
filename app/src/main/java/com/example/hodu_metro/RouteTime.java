@@ -2,6 +2,7 @@ package com.example.hodu_metro;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.DialogFragment;
 
 import android.app.AlarmManager;
 import android.app.NotificationManager;
@@ -24,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,6 +38,7 @@ import android.widget.LinearLayout;
 
 import android.view.View;
 import android.graphics.Typeface;
+import android.widget.TimePicker;
 
 import com.kyleduo.switchbutton.SwitchButton;
 
@@ -48,11 +51,10 @@ public class RouteTime extends AppCompatActivity {
 
     LinearLayout listView; // 레이아웃 객체 생성
 
-    private AlarmManager alarmManager;
-    private GregorianCalendar mCalender;
+    //타임피커
+    public static final String TAG = "MAIN";
+    private TextView time_text;
 
-    private NotificationManager notificationManager;
-    NotificationCompat.Builder builder;
 
     int numStep_ = 0;
     int[] countf= new int[100];
@@ -72,13 +74,6 @@ public class RouteTime extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_time);
-
-        ////알람기능//
-        notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        mCalender = new GregorianCalendar();
-        Log.v("HelloAlarmActivity", mCalender.getTime().toString());
-        /////
 
         /////////////////////////////////////////////////////
         //최소환승 버튼 클릭시 화면 전환
@@ -249,18 +244,9 @@ public class RouteTime extends AppCompatActivity {
             transferNum_textview.setText(transferNum_t);
 
 
-            //접수일 알람 버튼
-            Button button = (Button) findViewById(R.id.switchButton);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setAlarm();
-                }
-            });
-
-
 //////////////////진동 울리기//////////////////
 /*
+
             SwitchButton switchButton = (SwitchButton) findViewById(R.id.switchButton);
             switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -300,42 +286,27 @@ public class RouteTime extends AppCompatActivity {
             });
 */
 
-            ////////////////////////////////////////
+            time_text = findViewById(R.id.time_text);
 
-/*
-            Button button1 = (Button) findViewById(R.id.eventButton) ;
-            button1.setOnClickListener(new Button.OnClickListener() {
-                String getTime;
+            Button time_btn = findViewById(R.id.time_btn);
+
+            //시간 설정
+            time_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    long now = System.currentTimeMillis();
-                    Date date = new Date(now);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("H:m");
-                    String getTime = dateFormat.format(date);
-
-                    // 스위치 버튼이 체크되었는지 검사하여 진동 울리기
-                    if(hourminute_t[numStep_ - 2].compareTo(getTime)<0){
-                        return;
-                    }
-
-                    while(!getTime.equals(hourminute_t[numStep_ - 2])){
-                        now = System.currentTimeMillis();
-                        date = new Date(now);
-                        dateFormat = new SimpleDateFormat("H:m");
-                        getTime = dateFormat.format(date);
-
-                        Log.d("현재시간", "현재시간: " + getTime);
-                        Log.d("도착시간", "도착시간: " + hourminute_t[numStep_ - 2]);
-
-                    }
-                    for(int j=0;j<3;j++) {
-                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        vibrator.vibrate(1000); // 1초간 진동
-                        break;
-                    }
-
+                    DialogFragment timePicker = new TimePickerFragment();
+                    timePicker.show(getSupportFragmentManager(), "time picker");
                 }
-            });*/
+            });
+
+            //알람 취소
+            Button alarm_cancel_btn = findViewById(R.id.alarm_cancel_btn);
+            alarm_cancel_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cancelAlarm();
+                }
+            });
 
 
         } catch (IOException e) {
@@ -347,29 +318,73 @@ public class RouteTime extends AppCompatActivity {
 
     }
 
-    private void setAlarm() {
-        //AlarmReceiver에 값 전달
-        Intent receiverIntent = new Intent(RouteTime.this, AlarmRecevier.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(RouteTime.this, 0, receiverIntent, 0);
+    /**
+     * 시간을 정하면 호출되는 메소드
+     * @param view 화면
+     * @param hourOfDay 시간
+     * @param minute 분
+     */
+    //@Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-        String from = "2022-09-12 22:55:00"; //임의로 날짜와 시간을 지정
+        Log.d(TAG, "## onTimeSet ## ");
+        Calendar c = Calendar.getInstance();
 
-        //날짜 포맷을 바꿔주는 소스코드
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date datetime = null;
-        try {
-            datetime = dateFormat.parse(from);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        c.set(Calendar.MINUTE, minute);
+        c.set(Calendar.SECOND, 0);
+
+        //화면에 시간지정
+        updateTimeText(c);
+
+        //알람설정정
+        startAlarm(c);
+    }
+
+    /**
+     * 화면에 사용자가 선택한 시간을 보여주는 메소드
+     * @param c 시간
+     */
+    private void updateTimeText(Calendar c){
+
+        Log.d(TAG, "## updateTimeText ## ");
+        String timeText = "알람시간: ";
+        timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
+        time_text.setText(timeText);
+    }
+
+    /**
+     * 알람 시작
+     * @param c 시간
+     */
+    private void startAlarm(Calendar c){
+        Log.d(TAG, "## startAlarm ## ");
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        if(c.before(Calendar.getInstance())){
+            c.add(Calendar.DATE, 1);
         }
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(datetime);
-
-        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(),pendingIntent);
-
+        //RTC_WAKE : 지정된 시간에 기기의 절전 모드를 해제하여 대기 중인 인텐트를 실행
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
 
     }
+
+    /**
+     * 알람 취소
+     */
+    private void cancelAlarm(){
+        Log.d(TAG, "## cancelAlarm ## ");
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        alarmManager.cancel(pendingIntent);
+        time_text.setText("알람 취소");
+    }
+
 
     private void createBigView(){
 

@@ -117,14 +117,16 @@
             android:layout_marginLeft="20dp"
             app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
 
-        <com.kyleduo.switchbutton.SwitchButton
+<!--        <com.kyleduo.switchbutton.SwitchButton
             android:id="@+id/switchButton"
             style="@style/SwitchButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="0dp"
-            android:layout_marginLeft="-5dp"/>
+            android:layout_marginLeft="-5dp"/>-->
+
+
 
 
     </LinearLayout>
@@ -135,6 +137,32 @@
         android:layout_height="wrap_content"
         android:text="누르면 진동"
         android:backgroundTint="#FF0000"/>-->
+    <TextView
+        android:id="@+id/time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Alarm set"
+        android:textSize="20sp"
+        android:layout_above="@+id/button_timepicker"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        />
+
+    <Button
+        android:id="@+id/time_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#888888"
+        android:text="시간지정" />
+
+    <Button
+        android:id="@+id/alarm_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알람취소"
+        android:layout_below="@+id/button_timepicker"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#888888"/>
 
     <LinearLayout
         android:layout_width="match_parent"
