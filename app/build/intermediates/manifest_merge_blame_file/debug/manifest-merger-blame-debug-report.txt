@@ -5,7 +5,7 @@
 5    android:versionName="1.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="21"
+8        android:minSdkVersion="24"
 8-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="32" />
 9-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml
@@ -13,86 +13,110 @@
 11    <uses-permission android:name="android.permission.INTERNET" />
 11-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:6:5-67
 11-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:6:22-64
-12
-13    <application
-13-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:8:5-35:19
-14        android:allowBackup="true"
-14-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:9:9-35
-15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-15-->[androidx.core:core:1.7.0] C:\Users\hongyelim\.gradle\caches\transforms-3\f622e35635a3232f6225319acceefc29\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
-16        android:debuggable="true"
-17        android:hardwareAccelerated="false"
-17-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:10:9-44
-18        android:icon="@mipmap/ic_launcher"
-18-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:12:9-43
-19        android:label="@string/app_name"
-19-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:13:9-41
-20        android:largeHeap="true"
-20-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:11:9-33
-21        android:roundIcon="@mipmap/ic_launcher_round"
-21-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:14:9-54
-22        android:supportsRtl="true"
-22-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:15:9-35
-23        android:testOnly="true"
-24        android:theme="@style/Theme.Hodu_metro" >
-24-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:16:9-48
-25        <activity
-25-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:17:9-25:20
-26            android:name="com.example.hodu_metro.MainActivity"
-26-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:18:13-41
-27            android:exported="true" >
-27-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:19:13-36
-28            <intent-filter>
-28-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:20:13-24:29
-29                <action android:name="android.intent.action.MAIN" />
-29-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:21:17-69
-29-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:21:25-66
-30
-31                <category android:name="android.intent.category.LAUNCHER" />
-31-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:23:17-77
-31-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:23:27-74
-32            </intent-filter>
-33        </activity>
-34        <activity android:name="com.example.hodu_metro.Input" />
-34-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:27:9-52
-34-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:27:19-40
-35        <activity android:name="com.example.hodu_metro.Search" />
-35-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:28:9-53
-35-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:28:19-41
-36        <activity android:name="com.example.hodu_metro.RouteTime" />
-36-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:29:9-56
-36-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:29:19-44
-37        <activity android:name="com.example.hodu_metro.RouteCongest" />
-37-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:30:9-59
-37-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:30:19-47
-38        <activity android:name="com.example.hodu_metro.RouteTransfer" />
-38-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:31:9-60
-38-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:31:19-48
-39        <activity android:name="com.example.hodu_metro.SearchAdapter" />
-39-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:32:9-33:54
-39-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:32:19-48
-40
-41        <provider
-41-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
-42            android:name="androidx.startup.InitializationProvider"
-42-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
-43            android:authorities="com.example.hodu_metro.androidx-startup"
-43-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
-44            android:exported="false" >
-44-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
-45            <meta-data
-45-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
-46                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-46-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
-47                android:value="androidx.startup" />
-47-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
-48            <meta-data
-48-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
-49                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-49-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
-50                android:value="androidx.startup" />
-50-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
-51        </provider>
-52    </application>
-53
-54</manifest>
+12    <uses-permission android:name="android.permission.VIBRATE" />
+12-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:7:5-67
+12-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:7:22-65
+13 //진동 사용 위해 권한 요청
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:9:5-79
+14-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:9:22-77
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:10:5-80
+15-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:10:22-78
+16
+17    <application
+17-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:12:5-50:19
+18        android:allowBackup="true"
+18-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:13:9-35
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.7.0] C:\Users\hongyelim\.gradle\caches\transforms-3\f622e35635a3232f6225319acceefc29\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+20        android:debuggable="true"
+21        android:extractNativeLibs="false"
+22        android:hardwareAccelerated="false"
+22-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:14:9-44
+23        android:icon="@mipmap/ic_launcher"
+23-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:16:9-43
+24        android:label="@string/app_name"
+24-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:17:9-41
+25        android:largeHeap="true"
+25-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:15:9-33
+26        android:roundIcon="@mipmap/ic_launcher_round"
+26-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:18:9-54
+27        android:supportsRtl="true"
+27-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:19:9-35
+28        android:testOnly="true"
+29        android:theme="@style/Theme.Hodu_metro" >
+29-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:20:9-48
+30        <activity
+30-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:21:9-29:20
+31            android:name="com.example.hodu_metro.MainActivity"
+31-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:22:13-41
+32            android:exported="true" >
+32-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:23:13-36
+33            <intent-filter>
+33-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:24:13-28:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:25:17-69
+34-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:25:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:27:17-77
+36-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:27:27-74
+37            </intent-filter>
+38        </activity>
+39        <activity android:name="com.example.hodu_metro.Input" />
+39-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:31:9-52
+39-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:31:19-40
+40        <activity android:name="com.example.hodu_metro.Search" />
+40-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:32:9-53
+40-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:32:19-41
+41        <activity android:name="com.example.hodu_metro.RouteTime" />
+41-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:33:9-56
+41-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:33:19-44
+42        <activity android:name="com.example.hodu_metro.RouteCongest" />
+42-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:34:9-59
+42-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:34:19-47
+43        <activity android:name="com.example.hodu_metro.RouteTransfer" />
+43-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:35:9-60
+43-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:35:19-48
+44        <activity android:name="com.example.hodu_metro.SearchAdapter" />
+44-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:36:9-37:54
+44-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:36:19-48
+45        <activity android:name="com.example.hodu_metro.TimePickerFragment" />
+45-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:39:9-40:54
+45-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:39:19-53
+46        <activity android:name="com.example.hodu_metro.NotificationHelper" />
+46-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:41:9-42:54
+46-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:41:19-53
+47        <activity android:name="com.example.hodu_metro.Jsonobj" />
+47-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:44:9-45:54
+47-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:44:19-42
+48
+49        <receiver android:name="com.example.hodu_metro.AlertReceiver" />
+49-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:47:9-50
+49-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:47:19-48
+50
+51        <provider
+51-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+52            android:name="androidx.startup.InitializationProvider"
+52-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
+53            android:authorities="com.example.hodu_metro.androidx-startup"
+53-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
+54            android:exported="false" >
+54-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
+55            <meta-data
+55-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+56                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+56-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
+57                android:value="androidx.startup" />
+57-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
+58            <meta-data
+58-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+59                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+59-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+60                android:value="androidx.startup" />
+60-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+61        </provider>
+62    </application>
+63
+64</manifest>

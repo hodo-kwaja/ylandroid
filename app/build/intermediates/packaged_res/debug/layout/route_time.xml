@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
     // 최단시간, 최소환승, 혼잡도 카테고리
     <LinearLayout
@@ -62,14 +61,14 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
             android:textColor="#888888"
-            android:textSize="11dp" />
+            android:textSize="15dp" />
     </LinearLayout>
 
-    //소요시간 텍스트
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        //소요시간
         <TextView
             android:id="@+id/duration"
             android:layout_width="wrap_content"
@@ -80,6 +79,7 @@
             android:textColor="#000000"
             android:textSize="30dp"
             android:textStyle="bold"/>
+        //경유역 개수
         <TextView
             android:id="@+id/numStep"
             android:layout_width="wrap_content"
@@ -89,13 +89,14 @@
             android:layout_marginBottom="15dp"
             android:textColor="#000000"
             android:textSize="12dp" />
-
+        // "|" 표시
         <View
             android:layout_width="1dp"
             android:layout_height="15dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="25dp"
             android:background="#888888" />
+        //환승횟수
         <TextView
             android:id="@+id/transferNum"
             android:layout_width="wrap_content"
@@ -106,37 +107,78 @@
             android:textColor="#000000"
             android:textSize="12dp" />
 
-        <TextView
-            android:id="@+id/text_view"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            app:tint="#990000"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="20dp"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+<!--        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/switchButton"
+            style="@style/SwitchButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="15dp"
-            android:textColor="#000000"
-            android:textSize="12dp" />
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="-5dp"/>-->
+
+
+
+
     </LinearLayout>
+
+<!--    <Button
+        android:id="@+id/eventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="누르면 진동"
+        android:backgroundTint="#FF0000"/>-->
+    <TextView
+        android:id="@+id/time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Alarm set"
+        android:textSize="20sp"
+        android:layout_above="@+id/button_timepicker"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        />
+
+    <Button
+        android:id="@+id/time_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#888888"
+        android:text="시간지정" />
+
+    <Button
+        android:id="@+id/alarm_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알람취소"
+        android:layout_below="@+id/button_timepicker"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#888888"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/createTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:text="텍스트뷰 동적 생성"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/listView"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="30dp"
-        android:background="#FFFFFF"/>
+        android:layout_marginTop="10dp">
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/listView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF" />
 
-
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>

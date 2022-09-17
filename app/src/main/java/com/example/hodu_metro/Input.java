@@ -3,6 +3,7 @@ package com.example.hodu_metro;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
@@ -12,6 +13,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,6 +31,8 @@ import org.json.JSONObject;
 // hh시 mm분
 
 import com.github.chrisbanes.photoview.PhotoView;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 //https://github.com/chrisbanes/PhotoView 라이브러리 가져와서씀
 public class Input extends AppCompatActivity {
@@ -42,7 +51,7 @@ public class Input extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.input);
-
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);
         EditText departure = (EditText) findViewById(R.id.Edit1);// 출발역 입력칸
         EditText arrival = (EditText) findViewById(R.id.Edit2); // 도착역 입력칸
 
@@ -105,7 +114,6 @@ public class Input extends AppCompatActivity {
                 SimpleDateFormat formatter = new SimpleDateFormat("HH시 mm분");
                 formattedNow = formatter.format(now);
 
-
                 if (e == 2 || e == 3 || e == 4 || e == 5 || e == 6)
                     week = "w";
                 else if (e == 7)
@@ -120,12 +128,6 @@ public class Input extends AppCompatActivity {
 
                 //////////////////////json 파싱/////////////////////////////////
 
-/*                ArrayList List =new ArrayList();
-                List.add(0,departure_text);
-                List.add(1,arrival_text);
-                List.add(2, formattedNow);
-                List.add(3,week);*/
-
                 JSONObject obj = new JSONObject();
                 try {
                     obj.put("departure", departure_text);
@@ -139,7 +141,68 @@ public class Input extends AppCompatActivity {
                     ex.printStackTrace();
                 }
 
-                Intent intent = new Intent(getApplicationContext(), RouteTime.class);
+                Toast.makeText(getApplicationContext(), "짧게 출력 Hello World!", Toast.LENGTH_SHORT).show();
+                Thread th = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        FileWriter writer = null;
+                        try {
+                            StringBuffer sb = new StringBuffer();
+                            URL url = new URL("http://172.30.4.105:8080/navi?departure=천안&arrival=신창&hour=15&minute=53&week=W");
+
+                            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                            // 저 경로의 source를 받아온다.
+                            if (conn != null) {
+                                conn.setConnectTimeout(5000);
+                                conn.setUseCaches(false);
+
+                                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+                                    while (true) {
+                                        String line = br.readLine();
+                                        if (line == null)
+                                            break;
+                                        sb.append(line + "\n");
+                                    }
+                                    Log.d("myLog", sb.toString());
+                                    br.close();
+                                }
+                                conn.disconnect();
+                            }
+
+                            // 받아온 source를 JSONObject로 변환한다.
+                            //JSONObject jsonObj = new JSONObject(sb.toString());
+
+                            Jsonobj.jsonObject = new JSONObject(sb.toString());
+                            Jsonobj.init();
+                            Log.d("json파일확인 " ,"확인"+ Jsonobj.jsonObject);
+
+                            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                            //String json = gson.toJson(jsonObj);
+                            /*try {
+                                writer = new FileWriter("/storage/emulated/0/Download/Path.json");
+                                writer.write(json);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }finally {
+                                try {
+                                    writer.close();
+                                }catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }*/
+
+                        } catch (Exception e){
+                            e.printStackTrace();
+                            Log.e("error", e.getMessage());
+                        }
+                    }
+                });
+
+                th.start();
+
+                Intent intent = new Intent(getApplicationContext(), RouteTime.class); //루트타임 페이지 호출
                 startActivity(intent);
             }
         });

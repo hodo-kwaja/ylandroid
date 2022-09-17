@@ -571,6 +571,28 @@ attr itemVerticalPadding
 attr keyPositionType
 attr keyboardIcon
 attr keylines
+attr kswAnimationDuration
+attr kswBackColor
+attr kswBackDrawable
+attr kswBackRadius
+attr kswFadeBack
+attr kswTextAdjust
+attr kswTextExtra
+attr kswTextOff
+attr kswTextOn
+attr kswTextThumbInset
+attr kswThumbColor
+attr kswThumbDrawable
+attr kswThumbHeight
+attr kswThumbMargin
+attr kswThumbMarginBottom
+attr kswThumbMarginLeft
+attr kswThumbMarginRight
+attr kswThumbMarginTop
+attr kswThumbRadius
+attr kswThumbRangeRatio
+attr kswThumbWidth
+attr kswTintColor
 attr lStar
 attr labelBehavior
 attr labelStyle
@@ -1181,6 +1203,14 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ksw_md_back_color
+color ksw_md_ripple_checked
+color ksw_md_ripple_normal
+color ksw_md_solid_checked
+color ksw_md_solid_checked_disable
+color ksw_md_solid_disable
+color ksw_md_solid_normal
+color ksw_md_solid_shadow
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -1847,6 +1877,14 @@ dimen hint_pressed_alpha_material_light
 dimen item_touch_helper_max_drag_scroll_per_frame
 dimen item_touch_helper_swipe_escape_max_velocity
 dimen item_touch_helper_swipe_escape_velocity
+dimen ksw_md_thumb_ripple_size
+dimen ksw_md_thumb_shadow_inset
+dimen ksw_md_thumb_shadow_inset_bottom
+dimen ksw_md_thumb_shadow_inset_top
+dimen ksw_md_thumb_shadow_offset
+dimen ksw_md_thumb_shadow_size
+dimen ksw_md_thumb_solid_inset
+dimen ksw_md_thumb_solid_size
 dimen m3_alert_dialog_action_bottom_padding
 dimen m3_alert_dialog_action_top_padding
 dimen m3_alert_dialog_corner_size
@@ -2370,6 +2408,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable hodu_navi
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
@@ -2381,6 +2420,30 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ksw_md_thumb
+drawable line_1
+drawable line_101
+drawable line_102
+drawable line_104
+drawable line_107
+drawable line_108
+drawable line_109
+drawable line_110
+drawable line_112
+drawable line_113
+drawable line_114
+drawable line_115
+drawable line_116
+drawable line_2
+drawable line_21
+drawable line_22
+drawable line_3
+drawable line_4
+drawable line_5
+drawable line_6
+drawable line_7
+drawable line_8
+drawable line_9
 drawable m3_appbar_background
 drawable m3_popupmenu_background_overlay
 drawable m3_radiobutton_ripple
@@ -2424,6 +2487,10 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable round_green
+drawable round_red
+drawable round_white
+drawable round_yellow
 drawable test_custom_background
 drawable test_level_drawable
 drawable tooltip_frame_dark
@@ -2500,6 +2567,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id alarm_cancel_btn
 id alertTitle
 id aligned
 id all
@@ -2523,6 +2591,7 @@ id bottom
 id bounce
 id button1
 id buttonPanel
+id button_timepicker
 id cancel_button
 id center
 id centerCrop
@@ -2555,7 +2624,6 @@ id contiguous
 id coordinator
 id cos
 id counterclockwise
-id createTextView
 id custom
 id customPanel
 id cut
@@ -2638,6 +2706,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageView
 id info
 id invisible
 id inward
@@ -2843,11 +2912,9 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView3
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
-id text_view
 id textinput_counter
 id textinput_error
 id textinput_helper_text
@@ -2855,6 +2922,8 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id time
+id time_btn
+id time_text
 id title
 id titleDividerNoCustom
 id title_template
@@ -3577,6 +3646,8 @@ style ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Year
 style ShapeAppearanceOverlay_MaterialComponents_TextInputLayout_FilledBox
 style ShapeAppearanceOverlay_TopLeftCut
 style ShapeAppearanceOverlay_TopRightDifferentCornerSize
+style SwitchButtonMD
+style SwitchButtonStyle
 style Test_ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Day
 style Test_Theme_MaterialComponents_MaterialCalendar
 style Test_Widget_MaterialComponents_MaterialCalendar
@@ -4382,6 +4453,7 @@ styleable State android_id constraints
 styleable StateListDrawable android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable StateListDrawableItem android_drawable
 styleable StateSet defaultState
+styleable SwitchButton kswAnimationDuration kswBackColor kswBackDrawable kswBackRadius kswFadeBack kswTextAdjust kswTextExtra kswTextOff kswTextOn kswTextThumbInset kswThumbColor kswThumbDrawable kswThumbHeight kswThumbMargin kswThumbMarginBottom kswThumbMarginLeft kswThumbMarginRight kswThumbMarginTop kswThumbRadius kswThumbRangeRatio kswThumbWidth kswTintColor
 styleable SwitchCompat android_textOn android_textOff android_thumb showText splitTrack switchMinWidth switchPadding switchTextAppearance thumbTextPadding thumbTint thumbTintMode track trackTint trackTintMode
 styleable SwitchMaterial useMaterialThemeColors
 styleable TabItem android_icon android_layout android_text

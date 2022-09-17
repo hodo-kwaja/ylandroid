@@ -55,7 +55,7 @@
             android:layout_marginLeft="10dp"
             android:hint="도착역을 입력하세요      "
             android:minHeight="48dp" />
-
+        //돋보기 이미지
         <ImageButton
             android:id="@+id/button1"
             android:layout_width="50dp"

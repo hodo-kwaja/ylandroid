@@ -40,6 +40,8 @@ import android.view.View;
 import android.graphics.Typeface;
 import android.widget.TimePicker;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kyleduo.switchbutton.SwitchButton;
 
 
@@ -107,22 +109,30 @@ public class RouteTime extends AppCompatActivity {
         //assets/ test.json 파일 읽기 위한 InputStream
         try {
             //InputStream is = assetManager.open("test.json"); //환승 1회
-            InputStream is = assetManager.open("test.json"); //환승 2회
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader reader = new BufferedReader(isr);
+            //InputStream is = Jsonobj.json; //환승 2회
+            //InputStreamReader isr = new InputStreamReader(is);
+            //BufferedReader reader = new BufferedReader(isr);
 
-            StringBuffer buffer = new StringBuffer();
-            String line = reader.readLine();
-            while (line != null) {
-                buffer.append(line + "\n");
-                line = reader.readLine();
-            }
+            //StringBuffer buffer = new StringBuffer();
+            //String line = reader.readLine();
+            //while (line != null) {
+            //    buffer.append(line + "\n");
+            //    line = reader.readLine();
+            //}
 
 
-            String jsonData = buffer.toString();
+
+            //String jsonData = buffer.toString();
 
             //json 데이터가 ShortestPath 일 경우
-            JSONObject jsonObject = new JSONObject(jsonData);
+            //JSONObject jsonObject = Jsonobj.jsonObject;
+
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = Jsonobj.hello();
+            Log.d("json파일확인루트타임11 " ,"확인"+ json);
+
+            JSONObject jsonObject = new JSONObject(json);
+            Log.d("json파일확인루트타임 " ,"확인"+ json);
 
             JSONArray jsonArray = jsonObject.getJSONArray("ShortestPath");
 
@@ -285,7 +295,7 @@ public class RouteTime extends AppCompatActivity {
                 }
             });
 */
-
+            /////////////////타임피커//////////
             time_text = findViewById(R.id.time_text);
 
             Button time_btn = findViewById(R.id.time_btn);
@@ -307,11 +317,11 @@ public class RouteTime extends AppCompatActivity {
                     cancelAlarm();
                 }
             });
+        ////////////////////타임피커////////////////////////
 
-
-        } catch (IOException e) {
+        }/* catch (IOException e) {
             e.printStackTrace();
-        } catch (JSONException e) {
+        } */catch (JSONException e) {
             e.printStackTrace();
         }
 

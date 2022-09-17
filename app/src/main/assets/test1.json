@@ -1,0 +1,246 @@
+{
+  "ShortestPath": [
+    {
+      "stationName": "신림",
+      "stationCode": "230",
+      "lineId": "2",
+      "schedule": {
+        "lineDirection": "1",
+        "weekType": "W",
+        "hour": 9,
+        "minute": 54,
+        "typeName": "N",
+        "scheduleName": "성수",
+        "congestScore": 2,
+        "duration": 0,
+        "numStep": 0
+      },
+      "transfer": {
+        "transferNum": 0,
+        "isTransfer": false,
+        "transferDistance": 0,
+        "transferTime": 0
+      }
+    },
+    {
+      "stationName": "봉천",
+      "stationCode": "229",
+      "lineId": "2",
+      "schedule": {
+        "lineDirection": "1",
+        "weekType": "W",
+        "hour": 9,
+        "minute": 56,
+        "typeName": "N",
+        "scheduleName": "성수",
+        "congestScore": 3,
+        "duration": 2,
+        "numStep": 1
+      },
+      "transfer": {
+        "transferNum": 0,
+        "isTransfer": false,
+        "transferDistance": 0,
+        "transferTime": 0
+      }
+    },
+    {
+      "stationName": "서울대입구",
+      "stationCode": "228",
+      "lineId": "2",
+      "schedule": {
+        "lineDirection": "1",
+        "weekType": "W",
+        "hour": 9,
+        "minute": 58,
+        "typeName": "N",
+        "scheduleName": "성수",
+        "congestScore": 1,
+        "duration": 4,
+        "numStep": 2
+      },
+      "transfer": {
+        "transferNum": 0,
+        "isTransfer": false,
+        "transferDistance": 0,
+        "transferTime": 0
+      }
+    },
+    {
+      "stationName": "낙성대",
+      "stationCode": "227",
+      "lineId": "2",
+      "schedule": {
+        "lineDirection": "1",
+        "weekType": "W",
+        "hour": 10,
+        "minute": 0,
+        "typeName": "N",
+        "scheduleName": "성수",
+        "congestScore": 2,
+        "duration": 6,
+        "numStep": 3
+      },
+      "transfer": {
+        "transferNum": 0,
+        "isTransfer": false,
+        "transferDistance": 0,
+        "transferTime": 0
+      }
+    },
+    {
+      "stationName": "사당",
+      "stationCode": "433",
+      "lineId": "2",
+      "schedule": {
+        "lineDirection": "1",
+        "weekType": "W",
+        "hour": 10,
+        "minute": 3,
+        "typeName": "N",
+        "scheduleName": "성수",
+        "congestScore": 0,
+        "duration": 9,
+        "numStep": 4
+      },
+      "transfer": {
+        "transferNum": 1,
+        "isTransfer": true,
+        "transferDistance": 111,
+        "transferTime": 120
+      }
+    },
+    {
+      "stationName": "사당",
+      "stationCode": "433",
+      "lineId": "4",
+      "schedule": {
+        "lineDirection": "0",
+        "weekType": "W",
+        "hour": 10,
+        "minute": 9,
+        "typeName": "N",
+        "scheduleName": "오이도",
+        "congestScore": 0,
+        "duration": 15,
+        "numStep": 4
+      },
+      "transfer": {
+        "transferNum": 1,
+        "isTransfer": true,
+        "transferDistance": 0,
+        "transferTime": 0
+      }
+    },
+    {
+      "stationName": "남태령",
+      "stationCode": "434",
+      "lineId": "4",
+      "schedule": {
+        "lineDirection": "0",
+        "weekType": "W",
+        "hour": 10,
+        "minute": 12,
+        "typeName": "N",
+        "scheduleName": "오이도",
+        "congestScore": 2,
+        "duration": 18,
+        "numStep": 5
+      },
+      "transfer": {
+        "transferNum": 1,
+        "isTransfer": false,
+        "transferDistance": 0,
+        "transferTime": 0
+      }
+    },
+    {
+      "stationName": "선바위",
+      "stationCode": "435",
+      "lineId": "4",
+      "schedule": {
+        "lineDirection": "0",
+        "weekType": "W",
+        "hour": 10,
+        "minute": 15,
+        "typeName": "N",
+        "scheduleName": "오이도",
+        "congestScore": 2,
+        "duration": 21,
+        "numStep": 6
+      },
+      "transfer": {
+        "transferNum": 1,
+        "isTransfer": false,
+        "transferDistance": 0,
+        "transferTime": 0
+      }
+    },
+    {
+      "stationName": "경마공원",
+      "stationCode": "436",
+      "lineId": "4",
+      "schedule": {
+        "lineDirection": "0",
+        "weekType": "W",
+        "hour": 10,
+        "minute": 17,
+        "typeName": "N",
+        "scheduleName": "오이도",
+        "congestScore": 3,
+        "duration": 23,
+        "numStep": 7
+      },
+      "transfer": {
+        "transferNum": 2,
+        "isTransfer": true,
+        "transferDistance": 100,
+        "transferTime": 60
+      }
+    },
+    {
+      "stationName": "경마공원",
+      "stationCode": "436",
+      "lineId": "5",
+      "schedule": {
+        "lineDirection": "0",
+        "weekType": "W",
+        "hour": 10,
+        "minute": 18,
+        "typeName": "N",
+        "scheduleName": "오이도",
+        "congestScore": 3,
+        "duration": 23,
+        "numStep": 7
+      },
+      "transfer": {
+        "transferNum": 2,
+        "isTransfer": true,
+        "transferDistance": 0,
+        "transferTime": 0
+      }
+    },
+    {
+      "stationName": "대공원",
+      "stationCode": "437",
+      "lineId": "5",
+      "schedule": {
+        "lineDirection": 0,
+        "weekType": "W",
+        "hour": 10,
+        "minute": 19,
+        "typeName": "N",
+        "scheduleName": "오이도",
+        "congestScore": 3,
+        "duration": 25,
+        "numStep": 8
+      },
+      "transfer": {
+        "transferNum": 2,
+        "isTransfer": false,
+        "transferDistance": 0,
+        "transferTime": 0
+      }
+    }
+  ]
+}

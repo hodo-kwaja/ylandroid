@@ -5,13 +5,14 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="@drawable/main_hodu"
+android:background="@drawable/hodu_navi"
 tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="260dp" />
 
+<!--
     <TextView
         android:id="@+id/textView3"
         android:layout_width="442dp"
@@ -21,5 +22,6 @@ tools:context=".MainActivity">
         android:textColor="#000000"
         android:textSize="60sp"
         android:textStyle="bold|italic" />
+-->
 
 </LinearLayout>

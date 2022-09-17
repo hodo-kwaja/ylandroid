@@ -260,6 +260,7 @@ public class Search extends AppCompatActivity {
         list.add("합정");
         list.add("홍대입구");
         list.add("신촌");
+        list.add("신촌(경의중앙)");
         list.add("이대");
         list.add("아현");
         list.add("충정로");
@@ -357,6 +358,7 @@ public class Search extends AppCompatActivity {
         list.add("목동");
         list.add("오목교");
         list.add("양평");
+        list.add("양평(경의중앙)");
         list.add("영등포시장");
         list.add("여의도");
         list.add("여의나루");

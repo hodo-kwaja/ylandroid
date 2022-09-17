@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name = "android.permission.VIBRATE"/> //진동 사용 위해 권한 요청
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -34,13 +36,17 @@
         <activity android:name=".SearchAdapter"
             tools:ignore="Instantiatable"></activity>
 
-        <receiver android:name=".AlarmRecevier"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
+        <activity android:name=".TimePickerFragment"
+            tools:ignore="Instantiatable"></activity>
+        <activity android:name=".NotificationHelper"
+            tools:ignore="Instantiatable"></activity>
+
+        <activity android:name=".Jsonobj"
+            tools:ignore="Instantiatable"></activity>
+
+        <receiver android:name=".AlertReceiver"/>
+
+
     </application>
 
 </manifest>

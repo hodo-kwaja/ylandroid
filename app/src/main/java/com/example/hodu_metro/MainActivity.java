@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Handler;
 import android.view.WindowManager;
 
-
 public class MainActivity extends AppCompatActivity {
 
     @Override
