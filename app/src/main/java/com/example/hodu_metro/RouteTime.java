@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.DialogFragment;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -22,15 +23,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import android.graphics.Color;
 import android.view.Gravity;
@@ -39,28 +44,37 @@ import android.widget.LinearLayout;
 import android.view.View;
 import android.graphics.Typeface;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.kyleduo.switchbutton.SwitchButton;
 
 
 public class RouteTime extends AppCompatActivity {
-        //textview 선언
+
+    /*public static final String TAG = "MAIN";
+    private TextView time_text;*/
+
+    //뒤로가기 버튼 누르면 Input 액티비티로 이동
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+
+        startActivity(new Intent(getApplicationContext(), Input.class));
+
+    }
+
+    //textview 선언
     TextView duration_textview; //소요시간
     TextView numStep_textview;  //경유역
     TextView transferNum_textview;  //환승 횟수
 
     LinearLayout listView; // 레이아웃 객체 생성
 
-    //타임피커
-    public static final String TAG = "MAIN";
-    private TextView time_text;
-
-
     int numStep_ = 0;
-    int[] countf= new int[100];
-    int[] countl= new int[100];
+    int[] countf = new int[100];
+    int[] countl = new int[100];
+    int[] countt = new int[100]; //급행
     String duration_t = "";
     String numStep_t = "";
     String transferNum_t = "";
@@ -70,6 +84,7 @@ public class RouteTime extends AppCompatActivity {
     String[] scheduleName_t = new String[100];
     String[] lineId_t = new String[100];
     String[] congestScore_t = new String[100];
+    String[] typeName_t = new String[100];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +92,11 @@ public class RouteTime extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_time);
 
+
         /////////////////////////////////////////////////////
         //최소환승 버튼 클릭시 화면 전환
-        TextView min_transfer=(TextView) findViewById(R.id.min_transfer);
-        min_transfer.setOnClickListener(new View.OnClickListener(){
+        TextView min_transfer = (TextView) findViewById(R.id.min_transfer);
+        min_transfer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RouteTransfer.class);
                 startActivity(intent);
@@ -88,8 +104,8 @@ public class RouteTime extends AppCompatActivity {
         });
 
         //혼잡도 버튼 클릭시 화면 전환
-        TextView congestion=(TextView) findViewById(R.id.congestion);
-        congestion.setOnClickListener(new View.OnClickListener(){
+        TextView congestion = (TextView) findViewById(R.id.congestion);
+        congestion.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RouteCongest.class);
                 startActivity(intent);
@@ -97,42 +113,51 @@ public class RouteTime extends AppCompatActivity {
         });
         //////////////////////////////////////////////////////////////////
 
-        listView = findViewById(R.id. listView);
+        /*Button alarm_t=(Button) findViewById(R.id.alarm);
+        alarm_t.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),        });*/
+        listView = findViewById(R.id.listView);
 
         //xml 아이디 - textview 지정
         duration_textview = findViewById(R.id.duration);
         numStep_textview = findViewById(R.id.numStep);
         transferNum_textview = findViewById(R.id.transferNum);
 
-        AssetManager assetManager = getAssets();
+        try{
 
+            FileReader is = new FileReader("/storage/emulated/0/Download/Path3.json");
+
+            BufferedReader reader = new BufferedReader(is);
+
+            StringBuffer buffer = new StringBuffer();
+            String line = reader.readLine();
+            while(line != null) {
+                buffer.append(line + "\n");
+                line = reader.readLine();
+            }
+
+
+      /*  AssetManager assetManager = getAssets();
         //assets/ test.json 파일 읽기 위한 InputStream
         try {
             //InputStream is = assetManager.open("test.json"); //환승 1회
-            //InputStream is = Jsonobj.json; //환승 2회
-            //InputStreamReader isr = new InputStreamReader(is);
-            //BufferedReader reader = new BufferedReader(isr);
+            //InputStream is = assetManager.open("test1.json"); //환승 2회
+            InputStream is = assetManager.open("test2.json"); //환승 2회
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader reader = new BufferedReader(isr);
+            StringBuffer buffer = new StringBuffer();
+            String line = reader.readLine();
+            while (line != null) {
+                buffer.append(line + "\n");
+                line = reader.readLine();
+            }
+*/
 
-            //StringBuffer buffer = new StringBuffer();
-            //String line = reader.readLine();
-            //while (line != null) {
-            //    buffer.append(line + "\n");
-            //    line = reader.readLine();
-            //}
-
-
-
-            //String jsonData = buffer.toString();
+            String jsonData = buffer.toString();
 
             //json 데이터가 ShortestPath 일 경우
-            //JSONObject jsonObject = Jsonobj.jsonObject;
-
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = Jsonobj.hello();
-            Log.d("json파일확인루트타임11 " ,"확인"+ json);
-
-            JSONObject jsonObject = new JSONObject(json);
-            Log.d("json파일확인루트타임 " ,"확인"+ json);
+            JSONObject jsonObject = new JSONObject(jsonData);
 
             JSONArray jsonArray = jsonObject.getJSONArray("ShortestPath");
 
@@ -143,7 +168,7 @@ public class RouteTime extends AppCompatActivity {
                 //첫번째 역의 값을 갖고오는 object (출발역, first)
                 JSONObject f = jsonArray.getJSONObject(0);
                 //마지막 역의 값을 갖고오는 object (도착역, last)
-                JSONObject l = jsonArray.getJSONObject(jsonArray.length()-1);
+                JSONObject l = jsonArray.getJSONObject(jsonArray.length() - 1);
 
 
                 String stationName_a = a.getString("stationName");
@@ -171,18 +196,32 @@ public class RouteTime extends AppCompatActivity {
                 int minute = schedule_a.getInt("minute");
 
                 //방면
-                String scheduleName= schedule_a.getString("scheduleName");
+                String scheduleName = schedule_a.getString("scheduleName");
                 scheduleName_t[i] = "<"+scheduleName + "행>";
-                hourminute_t[i] = hour +":" + minute;
+                hourminute_t[i] = hour + ":" + minute;
 
                 //호선
-                String lineId= a.getString("lineId");
+                String lineId = a.getString("lineId");
                 lineId_t[i] = lineId;
 
                 //혼잡도
                 int congestScore = schedule_a.getInt("congestScore");
                 String congestScore_s = Integer.toString(congestScore);
-                congestScore_t[i]= congestScore_s;
+                congestScore_t[i] = congestScore_s;
+
+                //급행
+                //Arrays.fill(countt,99); //countt배열 전체 99로 초기화
+
+                String typeName = schedule_a.getString("typeName");
+                typeName_t[i] = typeName;
+                Log.d("typename", typeName_t[i]); //typename확인
+
+                if(typeName_t[i].equals("S")){
+                    countt[i] = 99;
+                }
+
+                Log.d("countt", "count "+countt[i]);
+
 
                 //환승이 true 인 역의 숫자 저장
                 if (isTransfer == true) {
@@ -198,7 +237,7 @@ public class RouteTime extends AppCompatActivity {
                             if (second_t == 0) {
                                 transferTime_t[i] = "도보 " + minute_t + "분";
                             } else {
-                                transferTime_t[i] = "도보 " + minute_t + "분" + second_t + "초";
+                                transferTime_t[i] = "도보 " + minute_t + "분 " + second_t + "초";
                             }
                             //Log.d("transfer", transferTime_t[i]);
                         }
@@ -211,32 +250,29 @@ public class RouteTime extends AppCompatActivity {
                 int numStep_l = schedule_l.getInt("numStep");  //경유역
                 int transferNum_l = transfer_l.getInt("transferNum");  //환승횟수
 
-                if(transferNum_l==1){
-                    numStep_ = numStep_l+2;
-                }
-                else if(transferNum_l==2){
-                    numStep_ = numStep_l+3;
-                }
-                else if(transferNum_l==3){
-                    numStep_=numStep_l+4;
-                }
-                else if(transferNum_l==4){
-                    numStep_=numStep_l+5;
-                }
-                else if (transferNum_l == 5) {
+                if (transferNum_l == 0) {
+                    numStep_ = numStep_l + 1;
+                } else if (transferNum_l == 1) {
+                    numStep_ = numStep_l + 2;
+                }else if (transferNum_l == 2) {
+                    numStep_ = numStep_l + 3;
+                } else if (transferNum_l == 3) {
+                    numStep_ = numStep_l + 4;
+                } else if (transferNum_l == 4) {
+                    numStep_ = numStep_l + 5;
+                } else if (transferNum_l == 5) {
                     numStep_ = numStep_l + 6;
-                }
-                else if (transferNum_l == 6) {
+                } else if (transferNum_l == 6) {
                     numStep_ = numStep_l + 7;
                 }
 
                 //소요시간(시간,분 으로 변경)
-                if(duration_l<60)
+                if (duration_l < 60)
                     duration_t = duration_l + "분";
                 else {
                     int hour_d = duration_l / 60;
                     int minute_d = duration_l % 60;
-                    duration_t =  hour_d + "시간" + minute_d +"분";
+                    duration_t = hour_d + "시간" + minute_d + "분";
                 }
 
                 //경유역 개수
@@ -245,6 +281,7 @@ public class RouteTime extends AppCompatActivity {
                 transferNum_t = "환승" + transferNum_l + "회";
 
             }
+
             createBigView();
 
             //화면에 출력
@@ -253,170 +290,51 @@ public class RouteTime extends AppCompatActivity {
             numStep_textview.setText(numStep_t);
             transferNum_textview.setText(transferNum_t);
 
-
-//////////////////진동 울리기//////////////////
-/*
-
-            SwitchButton switchButton = (SwitchButton) findViewById(R.id.switchButton);
-            switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                    long now = System.currentTimeMillis();
-                    Date date = new Date(now);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("H:m");
-                    String getTime = dateFormat.format(date);
-
-                    // 스위치 버튼이 체크되었는지 검사하여 진동 울리기
-                    if (isChecked){
-
-                        if(hourminute_t[numStep_ - 2].compareTo(getTime)<0){
-                            return;
-                        }
-
-                        while(!getTime.equals(hourminute_t[numStep_ - 2])){
-                            now = System.currentTimeMillis();
-                            date = new Date(now);
-                            dateFormat = new SimpleDateFormat("H:m");
-                            getTime = dateFormat.format(date);
-
-                            Log.d("현재시간", "현재시간: " + getTime);
-                            Log.d("도착시간", "도착시간: " + hourminute_t[numStep_ - 2]);
-
-                        }
-                        for(int j=0;j<3;j++) {
-                            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(1000); // 1초간 진동
-                            break;
-                        }
-
-                    }
-                }
-            });
-*/
-            /////////////////타임피커//////////
-            time_text = findViewById(R.id.time_text);
-
-            Button time_btn = findViewById(R.id.time_btn);
-
-            //시간 설정
-            time_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    DialogFragment timePicker = new TimePickerFragment();
-                    timePicker.show(getSupportFragmentManager(), "time picker");
-                }
-            });
-
-            //알람 취소
-            Button alarm_cancel_btn = findViewById(R.id.alarm_cancel_btn);
-            alarm_cancel_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    cancelAlarm();
-                }
-            });
-        ////////////////////타임피커////////////////////////
-
-        }/* catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        } */catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
-
     }
 
-    /**
-     * 시간을 정하면 호출되는 메소드
-     * @param view 화면
-     * @param hourOfDay 시간
-     * @param minute 분
-     */
-    //@Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-        Log.d(TAG, "## onTimeSet ## ");
-        Calendar c = Calendar.getInstance();
-
-        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-        c.set(Calendar.MINUTE, minute);
-        c.set(Calendar.SECOND, 0);
-
-        //화면에 시간지정
-        updateTimeText(c);
-
-        //알람설정정
-        startAlarm(c);
-    }
-
-    /**
-     * 화면에 사용자가 선택한 시간을 보여주는 메소드
-     * @param c 시간
-     */
-    private void updateTimeText(Calendar c){
-
-        Log.d(TAG, "## updateTimeText ## ");
-        String timeText = "알람시간: ";
-        timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
-        time_text.setText(timeText);
-    }
-
-    /**
-     * 알람 시작
-     * @param c 시간
-     */
-    private void startAlarm(Calendar c){
-        Log.d(TAG, "## startAlarm ## ");
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlertReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
-
-        if(c.before(Calendar.getInstance())){
-            c.add(Calendar.DATE, 1);
-        }
-
-        //RTC_WAKE : 지정된 시간에 기기의 절전 모드를 해제하여 대기 중인 인텐트를 실행
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-
-    }
-
-    /**
-     * 알람 취소
-     */
-    private void cancelAlarm(){
-        Log.d(TAG, "## cancelAlarm ## ");
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlertReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
-
-        alarmManager.cancel(pendingIntent);
-        time_text.setText("알람 취소");
-    }
+    @SuppressLint("ResourceType")
 
 
-    private void createBigView(){
+    private void createBigView() {
 
-        for(int i=0;i<numStep_;i++) {
+        String SS="급행";
+
+        for (int i = 0; i < numStep_; i++) {
             TextView textViewNm = new TextView(getApplicationContext()); //출발역, 도착역, 환승역
-            TextView textViewTime= new TextView(getApplicationContext()); //열차시간
+            TextView textViewTime = new TextView(getApplicationContext()); //열차시간
             TextView textViewTransfer = new TextView(getApplicationContext()); //도보 이동 시간
             TextView textViewscheduleName = new TextView(getApplicationContext()); //방면
             TextView textViewlineId = new TextView(getApplicationContext());// 호선
-            TextView textViewcongestScore  = new TextView(getApplicationContext()); //혼잡도
+            TextView textViewcongestScore = new TextView(getApplicationContext()); //혼잡도
 
-            TextView T  = new TextView(getApplicationContext()); //환승 표시 T
+            TextView T = new TextView(getApplicationContext()); //환승 표시 T
+            TextView S = new TextView(getApplicationContext()); //급행표시 S
             textViewNm.setText(staitonName_tt[i]); //역이름 출력
 
 
-            if(i==0){ //출발역 처리
+            if (i == 0) { //출발역 처리
+
+                if(countt[i]==99){ //급행처리
+                    Log.d("카운트","카운트"+countt[i]);
+                    textViewscheduleName.setText(scheduleName_t[i]+" "+SS); //방면
+                    textViewscheduleName.setTextColor(Color.rgb(255, 0, 51));
+                }
+                else{
+                    textViewscheduleName.setText(scheduleName_t[i]); //방면
+                }
+
                 textViewlineId.setText(lineId_t[i]);// 호선
                 textViewlineId.setGravity(Gravity.CENTER);// 호선 가운데 정렬
                 textViewlineId.setTypeface(null, Typeface.BOLD); //호선 글씨 굵게
                 textViewTime.setText(hourminute_t[i]); //열차시간
                 textViewTime.setTypeface(null, Typeface.BOLD); //열차시간 글씨 굵게
-                textViewscheduleName.setText(scheduleName_t[i]); //방면
+                //textViewscheduleName.setText(scheduleName_t[i]); //방면
                 textViewcongestScore.setText(congestScore_t[i]); //혼잡도
 
                 textViewscheduleName.setTextSize(13); // 방면 텍스트 크기 지정
@@ -430,12 +348,11 @@ public class RouteTime extends AppCompatActivity {
                 listView.addView(textViewNm);
                 listView.addView(textViewscheduleName);
 
-            }
-            else if(i==countf[i]){ //1번(위) 환승역 처리
+            } else if (i == countf[i]) { //1번(위) 환승역 처리
 
                 T.setText("환승");
-                T.setGravity(Gravity.CENTER); // 가운데 정렬
-                T.setTypeface(null, Typeface.BOLD); // 글씨 굵게
+                T.setGravity(Gravity.CENTER); //호선 가운데 정렬
+                T.setTypeface(null, Typeface.BOLD); //호선 글씨 굵게
                 textViewTime.setText(hourminute_t[i]);
                 textViewTime.setTypeface(null, Typeface.BOLD); //열차시간 글씨 굵게
                 textViewTransfer.setText(transferTime_t[i]);
@@ -452,14 +369,24 @@ public class RouteTime extends AppCompatActivity {
                 listView.addView(textViewNm);
                 listView.addView(textViewTransfer);
 
-            }
-            else if(i==countl[i]){ //2번(아래) 환승역 처리
+            } else if (i == countl[i]) { //2번(아래) 환승역 처리
+
+                if(countt[i]==99){ //급행처리
+                    Log.d("카운트","카운트"+countt[i]);
+                    textViewscheduleName.setText(scheduleName_t[i]+" "+SS); //방면
+                    textViewscheduleName.setTextColor(Color.rgb(255, 0, 51));
+                }
+                else{
+                    textViewscheduleName.setText(scheduleName_t[i]); //방면
+                }
+
                 textViewlineId.setText(lineId_t[i]); //호선
                 textViewlineId.setGravity(Gravity.CENTER); //호선 가운데 정렬
                 textViewlineId.setTypeface(null, Typeface.BOLD); // 호선 글씨 굵게
                 textViewTime.setText(hourminute_t[i]);
                 textViewTime.setTypeface(null, Typeface.BOLD); //열차시간 글씨 굵게
-                textViewscheduleName.setText(scheduleName_t[i]);
+                //textViewscheduleName.setText(scheduleName_t[i]);
+                textViewcongestScore.setText(congestScore_t[i]); //혼잡도
                 textViewscheduleName.setTextSize(13); // 방면 텍스트 크기 지정
                 textViewNm.setTextSize(23);
                 textViewTime.setTextSize(13);//열차시간 텍스트 크기 지정
@@ -472,8 +399,7 @@ public class RouteTime extends AppCompatActivity {
                 listView.addView(textViewscheduleName);
 
 
-            }
-            else if(i==numStep_-1){ //도착역 처리
+            } else if (i == numStep_ - 1) { //도착역 처리
                 T.setText("도착");
                 T.setGravity(Gravity.CENTER); // 가운데 정렬
                 T.setTypeface(null, Typeface.BOLD); // 글씨 굵게
@@ -491,8 +417,9 @@ public class RouteTime extends AppCompatActivity {
                 listView.addView(textViewNm);
 
             }
-            else{ //경유역, 혼잡도
+            else { //경유역, 혼잡도
                 textViewcongestScore.setText(congestScore_t[i]);//혼잡도
+
                 textViewNm.setTextSize(15); //경유역 텍스트 크기
 
                 //텍스트뷰와 레이아웃 연결
@@ -503,8 +430,7 @@ public class RouteTime extends AppCompatActivity {
             // 텍스트뷰 글자타입 설정
             textViewNm.setTypeface(null, Typeface.BOLD);
             textViewNm.setTextColor(Color.rgb(0, 0, 0));
-            textViewcongestScore.setTextSize(3);
-            textViewcongestScore.setGravity(Gravity.CENTER);
+            textViewcongestScore.setTextSize(10);
             textViewTransfer.setTypeface(null, Typeface.BOLD);
             textViewTransfer.setTextColor(Color.GRAY);
 
@@ -525,9 +451,9 @@ public class RouteTime extends AppCompatActivity {
 
             LinearLayout.LayoutParams param1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
                     , LinearLayout.LayoutParams.WRAP_CONTENT);
-            param1.leftMargin =170; //열차시간
+            param1.leftMargin = 170; //열차시간
             param1.topMargin = -60;
-            //param1.bottomMargin= 10;
+            param1.bottomMargin = 0;
 
             LinearLayout.LayoutParams param2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
                     , LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -540,8 +466,8 @@ public class RouteTime extends AppCompatActivity {
             param3.leftMargin = 70; //호선
             //param3.bottomMargin = 10;
             //param3.topMargin = -60;
-            param3.width=80;
-            param3.height=80;
+            param3.width = 80;
+            param3.height = 80;
 
             LinearLayout.LayoutParams param4 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
                     , LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -552,18 +478,24 @@ public class RouteTime extends AppCompatActivity {
             LinearLayout.LayoutParams param5 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
                     , LinearLayout.LayoutParams.WRAP_CONTENT);
             param5.leftMargin = 280; //혼잡도
-            //param5.bottomMargin = 10;
+            //param5.bottomMargin = -30;
             param5.topMargin = -45;
-            param5.width=40;
-            param5.height=40;
+            param5.width = 40;
+            param5.height = 40;
 
             LinearLayout.LayoutParams param6 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
                     , LinearLayout.LayoutParams.WRAP_CONTENT);
             param6.leftMargin = 70; //환승표시 T
             //param5.bottomMargin = -30;
             param6.topMargin = -60;
-            param6.width=80;
-            param6.height=80;
+            param6.width = 80;
+            param6.height = 80;
+
+            LinearLayout.LayoutParams param7 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
+                    , LinearLayout.LayoutParams.WRAP_CONTENT);
+            //param7.leftMargin = 70; // 급행표시 S
+            //param7.bottomMargin = -30;
+            //param7.topMargin = -60;
 
 
             //설정한 레이아웃 텍스트뷰에 적용
@@ -574,138 +506,106 @@ public class RouteTime extends AppCompatActivity {
             textViewscheduleName.setLayoutParams(param4);
             textViewcongestScore.setLayoutParams(param5);
             T.setLayoutParams(param6);
+            S.setLayoutParams(param7);
 
             //텍스트뷰 백그라운드색상 설정
             textViewNm.setBackgroundColor(Color.rgb(255, 255, 255));
             textViewTransfer.setBackgroundColor(Color.rgb(255, 255, 255));
             textViewTime.setBackgroundColor(Color.rgb(255, 255, 255));
             textViewscheduleName.setBackgroundColor(Color.rgb(255, 255, 255));
-            T.setTextColor(Color.rgb(255,255,255));
-            textViewlineId.setTextColor((Color.rgb(255,255,255)));
+            T.setTextColor(Color.rgb(255, 255, 255));
+            textViewlineId.setTextColor((Color.rgb(255, 255, 255)));
 
             //혼잡도
-            if(congestScore_t[i].equals("3")) {
+            if (congestScore_t[i].equals("3")) {
+                textViewcongestScore.setBackgroundColor(Color.RED);
                 textViewcongestScore.setTextColor(Color.RED);
                 textViewcongestScore.setBackgroundResource(R.drawable.round_red);
-            }
-            else if(congestScore_t[i].equals("2")) {
+            } else if (congestScore_t[i].equals("2")) {
+                textViewcongestScore.setBackgroundColor(Color.YELLOW);
                 textViewcongestScore.setTextColor(Color.YELLOW);
                 textViewcongestScore.setBackgroundResource(R.drawable.round_yellow);
-            }
-            else if(congestScore_t[i].equals("1")) {
+            } else if (congestScore_t[i].equals("1")) {
+                textViewcongestScore.setBackgroundColor(Color.GREEN);
                 textViewcongestScore.setTextColor(Color.GREEN);
                 textViewcongestScore.setBackgroundResource(R.drawable.round_green);
-            }
-            else if (congestScore_t[i].equals("0")) {
+            } else if (congestScore_t[i].equals("0")) {
                 textViewcongestScore.setTextColor(Color.rgb(204,204,204));
                 textViewcongestScore.setBackgroundResource(R.drawable.round_white);
             }
 
 
-            if(lineId_t[i].equals("1")) {
+            if (lineId_t[i].equals("1")) {
                 T.setBackgroundResource(R.drawable.line_1);
                 textViewlineId.setBackgroundResource(R.drawable.line_1);
-            }
-            else if(lineId_t[i].equals("2")){
+            } else if (lineId_t[i].equals("2")) {
                 T.setBackgroundResource(R.drawable.line_2);
                 textViewlineId.setBackgroundResource(R.drawable.line_2);
-            }
-            else if(lineId_t[i].equals("3")){
+            } else if (lineId_t[i].equals("3")) {
                 T.setBackgroundResource(R.drawable.line_3);
                 textViewlineId.setBackgroundResource(R.drawable.line_3);
-            }
-            else if(lineId_t[i].equals("4")){
+            } else if (lineId_t[i].equals("4")) {
                 T.setBackgroundResource(R.drawable.line_4);
                 textViewlineId.setBackgroundResource(R.drawable.line_4);
-            }
-            else if(lineId_t[i].equals("5")){
+            } else if (lineId_t[i].equals("5")) {
                 T.setBackgroundResource(R.drawable.line_5);
                 textViewlineId.setBackgroundResource(R.drawable.line_5);
-            }
-            else if(lineId_t[i].equals("6")){
+            } else if (lineId_t[i].equals("6")) {
                 T.setBackgroundResource(R.drawable.line_6);
                 textViewlineId.setBackgroundResource(R.drawable.line_6);
-            }
-            else if(lineId_t[i].equals("7")){
+            } else if (lineId_t[i].equals("7")) {
                 T.setBackgroundResource(R.drawable.line_7);
                 textViewlineId.setBackgroundResource(R.drawable.line_7);
-            }
-            else if(lineId_t[i].equals("8")){
+            } else if (lineId_t[i].equals("8")) {
                 T.setBackgroundResource(R.drawable.line_8);
                 textViewlineId.setBackgroundResource(R.drawable.line_8);
-            }
-            else if(lineId_t[i].equals("9")){
+            } else if (lineId_t[i].equals("9")) {
                 T.setBackgroundResource(R.drawable.line_9);
                 textViewlineId.setBackgroundResource(R.drawable.line_9);
-            }
-            else if(lineId_t[i].equals("21")){//인천1호선
+            } else if (lineId_t[i].equals("21")) {//인천1호선
                 T.setBackgroundResource(R.drawable.line_21);
                 textViewlineId.setBackgroundResource(R.drawable.line_21);
-            }
-            else if(lineId_t[i].equals("22")){//인천2호선
+            } else if (lineId_t[i].equals("22")) {//인천2호선
                 T.setBackgroundResource(R.drawable.line_22);
                 textViewlineId.setBackgroundResource(R.drawable.line_22);
-            }
-            else if(lineId_t[i].equals("102")){//자기부상철도
+            } else if (lineId_t[i].equals("102")) {//자기부상철도
                 T.setBackgroundResource(R.drawable.line_102);
                 textViewlineId.setBackgroundResource(R.drawable.line_102);
-            }
-            else if(lineId_t[i].equals("107")){//용인에버라인
+            } else if (lineId_t[i].equals("107")) {//용인에버라인
                 T.setBackgroundResource(R.drawable.line_107);
                 textViewlineId.setBackgroundResource(R.drawable.line_107);
-            }
-            else if(lineId_t[i].equals("109")){//신분당선
+            } else if (lineId_t[i].equals("109")) {//신분당선
                 T.setBackgroundResource(R.drawable.line_109);
                 textViewlineId.setBackgroundResource(R.drawable.line_109);
-            }
-            else if(lineId_t[i].equals("110")){//의정부경전철
+            } else if (lineId_t[i].equals("110")) {//의정부경전철
                 T.setBackgroundResource(R.drawable.line_110);
                 textViewlineId.setBackgroundResource(R.drawable.line_110);
-            }
-            else if(lineId_t[i].equals("113")){//우이신설선
+            } else if (lineId_t[i].equals("113")) {//우이신설선
                 T.setBackgroundResource(R.drawable.line_113);
                 textViewlineId.setBackgroundResource(R.drawable.line_113);
-            }
-            else if(lineId_t[i].equals("114")){//서해선
+            } else if (lineId_t[i].equals("114")) {//서해선
                 T.setBackgroundResource(R.drawable.line_114);
                 textViewlineId.setBackgroundResource(R.drawable.line_114);
-            }
-            else if(lineId_t[i].equals("115")){//김포골드라인
+            } else if (lineId_t[i].equals("115")) {//김포골드라인
                 T.setBackgroundResource(R.drawable.line_115);
                 textViewlineId.setBackgroundResource(R.drawable.line_115);
-            }
-            else if(lineId_t[i].equals("104")){ //경의중앙선
+            } else if (lineId_t[i].equals("104")) { //경의중앙선
                 T.setBackgroundResource(R.drawable.line_104);
                 textViewlineId.setBackgroundResource(R.drawable.line_104);
-            }
-            else if(lineId_t[i].equals("116")){//수인분당선
+            } else if (lineId_t[i].equals("116")) {//수인분당선
                 T.setBackgroundResource(R.drawable.line_116);
                 textViewlineId.setBackgroundResource(R.drawable.line_116);
-            }
-            else if(lineId_t[i].equals("108")){//경춘선
+            } else if (lineId_t[i].equals("108")) {//경춘선
                 T.setBackgroundResource(R.drawable.line_108);
                 textViewlineId.setBackgroundResource(R.drawable.line_108);
-            }
-            else if(lineId_t[i].equals("112")){//경강선
+            } else if (lineId_t[i].equals("112")) {//경강선
                 T.setBackgroundResource(R.drawable.line_112);
                 textViewlineId.setBackgroundResource(R.drawable.line_112);
-            }
-            else if(lineId_t[i].equals("101")){//공항철도
+            } else if (lineId_t[i].equals("101")) {//공항철도
                 T.setBackgroundResource(R.drawable.line_101);
                 textViewlineId.setBackgroundResource(R.drawable.line_101);
             }
         }
-    }
-
-    //뒤로가기 버튼 누르면 Input 액티비티로 이동
-    @Override public void onBackPressed() {
-
-        super.onBackPressed();
-
-        startActivity(new Intent(getApplicationContext(),Input.class));
 
     }
-
-
 }
-

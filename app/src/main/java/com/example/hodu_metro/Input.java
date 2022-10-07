@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -33,12 +38,16 @@ import org.json.JSONObject;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 //https://github.com/chrisbanes/PhotoView 라이브러리 가져와서씀
 public class Input extends AppCompatActivity {
     static String departure_text;
     static String arrival_text;
-    static String formattedNow; //시간
+    //static String formattedNow; //시간
+    static String formattedH; //시
+    static String formattedM;  //분
     static String week; //요일
 
     String text;
@@ -46,6 +55,7 @@ public class Input extends AppCompatActivity {
 
     private long pressedTime;
 
+    ProgressDialog customProgressDialog; //로딩창 구현 객체
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +108,27 @@ public class Input extends AppCompatActivity {
             }
         });
 
+        //로딩창 객체 생성
+        customProgressDialog = new ProgressDialog(this);
+        customProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        //로딩창을 투명하게
+        //customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
         //검색 버튼 클릭시 액티비티 전환
         ImageButton search_button = (ImageButton) findViewById(R.id.button1);
         search_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //버튼 클릭하면 현재시간, 요일 구함
+               /* try{
+                    File file = new File("/storage/emulated/0/Download/Path3.json");
+                    if(file.exists()){
+                        file.delete();
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }*/
+
                 Date currentDate = new Date();
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(currentDate);
@@ -111,44 +136,45 @@ public class Input extends AppCompatActivity {
 
                 //시간
                 Date now = new Date();
-                SimpleDateFormat formatter = new SimpleDateFormat("HH시 mm분");
-                formattedNow = formatter.format(now);
+                Date now1 = new Date();
+                SimpleDateFormat formatter = new SimpleDateFormat("HH");
+                SimpleDateFormat formatter1 = new SimpleDateFormat("mm");
+                formattedH = formatter.format(now);
+                formattedM = formatter1.format(now1);
 
                 if (e == 2 || e == 3 || e == 4 || e == 5 || e == 6)
-                    week = "w";
+                    week = "W";
                 else if (e == 7)
-                    week = "a";
-                else week = "u";
+                    week = "A";
+                else week = "U";
 
                 Log.d("출발역", "출발역: " + departure_text);
                 Log.d("도착역", "도착역: " + arrival_text);
-                Log.d("현재시간날짜", "now: " + formattedNow);
+                Log.d("현재시간", "now: " + formattedH);
+                Log.d("현재분", "now: " + formattedM);
                 Log.d("현재시간날짜", "요일: " + week);
 
-
-                //////////////////////json 파싱/////////////////////////////////
-
-                JSONObject obj = new JSONObject();
-                try {
-                    obj.put("departure", departure_text);
-                    obj.put("arrival", arrival_text);
-                    obj.put("now", formattedNow);
-                    obj.put("week", week);
-
-                    Log.d("json확인", "확인: " + obj.toString());
-
-                } catch (JSONException ex) {
-                    ex.printStackTrace();
-                }
-
-                Toast.makeText(getApplicationContext(), "짧게 출력 Hello World!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "짧게 출력 Hello World!", Toast.LENGTH_SHORT).show();
                 Thread th = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         FileWriter writer = null;
                         try {
                             StringBuffer sb = new StringBuffer();
-                            URL url = new URL("http://172.30.4.105:8080/navi?departure=천안&arrival=신창&hour=15&minute=53&week=W");
+                            StringBuilder sb1 = new StringBuilder();
+                            sb1.append("http://hodometro.iptime.org:8080/navi/?departure=");
+                            sb1.append(departure_text);
+                            sb1.append("&arrival=");
+                            sb1.append(arrival_text);
+                            sb1.append("&hour=");
+                            sb1.append(formattedH);
+                            sb1.append("&minute=");
+                            sb1.append(formattedM);
+                            sb1.append("&week=");
+                            sb1.append(week);
+
+                            URL url = new URL(sb1.toString());
+                            //URL url = new URL("http://hodometro.iptime.org:8080/navi/?departure=천안&arrival=신창&hour=15&minute=53&week=W");
 
                             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -165,24 +191,37 @@ public class Input extends AppCompatActivity {
                                             break;
                                         sb.append(line + "\n");
                                     }
-                                    Log.d("myLog", sb.toString());
+                                    Log.d("mylog", sb.toString());
                                     br.close();
                                 }
                                 conn.disconnect();
                             }
 
                             // 받아온 source를 JSONObject로 변환한다.
-                            //JSONObject jsonObj = new JSONObject(sb.toString());
+                            /*JSONObject jsonObj = new JSONObject(sb.toString());
+                            JsonParser parser = new JsonParser();
+                            JsonObject j = parser.parse(String.valueOf(jsonObj)).getAsJsonObject();
+                            //Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                            Gson gson = new GsonBuilder().create();
+                            String json = gson.toJson(jsonObj);*/
 
-                            Jsonobj.jsonObject = new JSONObject(sb.toString());
-                            Jsonobj.init();
-                            Log.d("json파일확인 " ,"확인"+ Jsonobj.jsonObject);
+                            /*JSONObject jsonObj = new JSONObject(sb.toString());
+                            Gson gson = new GsonBuilder().create();
+                            String json = gson.toJson(jsonObj);*/
 
-                            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                            //String json = gson.toJson(jsonObj);
-                            /*try {
-                                writer = new FileWriter("/storage/emulated/0/Download/Path.json");
+                            JSONObject jsonObj = new JSONObject(sb.toString());
+                            String json = jsonObj.toString();
+
+                            Log.d("mylog2", json);
+
+
+                            try {
+                                writer = new FileWriter("/storage/emulated/0/Download/Path3.json",false);
                                 writer.write(json);
+                                Intent intent = new Intent(getApplicationContext(), RouteTime.class); //루트타임 페이지 호출
+                                startActivity(intent);
+                                finish();
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }finally {
@@ -191,7 +230,7 @@ public class Input extends AppCompatActivity {
                                 }catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                            }*/
+                            }
 
                         } catch (Exception e){
                             e.printStackTrace();
@@ -202,8 +241,34 @@ public class Input extends AppCompatActivity {
 
                 th.start();
 
-                Intent intent = new Intent(getApplicationContext(), RouteTime.class); //루트타임 페이지 호출
-                startActivity(intent);
+                customProgressDialog.setMessage("Loading...");
+                customProgressDialog.show(); //로딩 다이얼로그
+
+
+                //버튼 클릭하면 현재시간, 요일 구함
+                /*Intent intent = new Intent(getApplicationContext(), RouteTime.class); //루트타임 페이지 호출
+                startActivity(intent);*/
+                //////////////////////json 파싱/////////////////////////////////
+
+/*                ArrayList List =new ArrayList();
+                List.add(0,departure_text);
+                List.add(1,arrival_text);
+                List.add(2, formattedNow);
+                List.add(3,week);*/
+
+                /*JSONObject obj = new JSONObject();
+                try {
+                    obj.put("departure", departure_text);
+                    obj.put("arrival", arrival_text);
+                    obj.put("h", formattedH);
+                    obj.put("m", formattedM);
+                    obj.put("week", week);
+                    Log.d("json확인", "확인: " + obj.toString());
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }*/
+
+
             }
         });
 
