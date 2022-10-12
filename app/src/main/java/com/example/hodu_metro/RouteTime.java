@@ -222,7 +222,6 @@ public class RouteTime extends AppCompatActivity {
 
                 Log.d("countt", "count "+countt[i]);
 
-
                 //환승이 true 인 역의 숫자 저장
                 if (isTransfer == true) {
                     countl[i] = i;
@@ -244,6 +243,7 @@ public class RouteTime extends AppCompatActivity {
                     }
                 }
 
+                //변경사항아아아앙
 
                 //상단 정보
                 int duration_l = schedule_l.getInt("duration");  //소요시간
