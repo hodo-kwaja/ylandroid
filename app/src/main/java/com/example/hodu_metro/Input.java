@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -52,6 +53,8 @@ public class Input extends AppCompatActivity {
 
     String text;
     static int count = 0;
+
+    int h=0, mi=0;
 
     private long pressedTime;
 
@@ -141,6 +144,27 @@ public class Input extends AppCompatActivity {
                 SimpleDateFormat formatter1 = new SimpleDateFormat("mm");
                 formattedH = formatter.format(now);
                 formattedM = formatter1.format(now1);
+
+                //시간 설정할 경우
+                ImageButton button1 = findViewById(R.id.Time);
+                button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        TimePickerDialog timePickerDialog = new TimePickerDialog(Input.this, (view, hourOfDay, minute) -> {
+                            h = hourOfDay;
+                            mi = minute;
+                            formattedH = Integer.toString(h);
+                            formattedM = Integer.toString(mi);
+
+                        }, 02, 00, true);
+                        // timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        timePickerDialog.setMessage("출발 시간을 설정하세요");
+
+                        timePickerDialog.show();
+                    }
+
+                });
 
                 if (e == 2 || e == 3 || e == 4 || e == 5 || e == 6)
                     week = "W";
