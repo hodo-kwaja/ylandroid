@@ -1,9 +1,11 @@
 package com.example.hodu_metro;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
@@ -11,11 +13,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -50,15 +53,12 @@ public class Input extends AppCompatActivity {
     static String formattedH; //시
     static String formattedM;  //분
     static String week; //요일
-
     String text;
     static int count = 0;
-
     int h=0, mi=0;
-
     private long pressedTime;
-
     ProgressDialog customProgressDialog; //로딩창 구현 객체
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +83,6 @@ public class Input extends AppCompatActivity {
             arrival.setText(arrival_text);
             count = 0;
         }
-
-
         ////////////////////////////////////////////////////////////////////////////////
 
         // 이미지 줌인 줌 아웃
@@ -111,67 +109,58 @@ public class Input extends AppCompatActivity {
             }
         });
 
+        Date currentDate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        int e = calendar.get(Calendar.DAY_OF_WEEK);
+
+        //시간
+        Date now = new Date();
+        Date now1 = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("HH");
+        SimpleDateFormat formatter1 = new SimpleDateFormat("mm");
+        formattedH = formatter.format(now);
+        formattedM = formatter1.format(now1);
+
+        //시간 설정할 경우
+        ImageButton button1 = findViewById(R.id.Time);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(Input.this, (view, hourOfDay, minute) -> {
+                    h = hourOfDay;
+                    mi = minute;
+                    formattedH = Integer.toString(h);
+                    formattedM = Integer.toString(mi);
+
+                }, 02, 00, true);
+                // timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog.setMessage("출발 시간을 설정하세요");
+
+                timePickerDialog.show();
+            }
+
+        });
+        //Toast.makeText(getApplicationContext(), h+":" + mi +"분에 출발시간이 설정되었습니다.", Toast.LENGTH_SHORT).show();
+        if (e == 2 || e == 3 || e == 4 || e == 5 || e == 6)
+            week = "W";
+        else if (e == 7)
+            week = "A";
+        else week = "U";
+
         //로딩창 객체 생성
         customProgressDialog = new ProgressDialog(this);
         customProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         //로딩창을 투명하게
         //customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-
         //검색 버튼 클릭시 액티비티 전환
         ImageButton search_button = (ImageButton) findViewById(R.id.button1);
         search_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-               /* try{
-                    File file = new File("/storage/emulated/0/Download/Path3.json");
-                    if(file.exists()){
-                        file.delete();
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }*/
-
-                Date currentDate = new Date();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(currentDate);
-                int e = calendar.get(Calendar.DAY_OF_WEEK);
-
-                //시간
-                Date now = new Date();
-                Date now1 = new Date();
-                SimpleDateFormat formatter = new SimpleDateFormat("HH");
-                SimpleDateFormat formatter1 = new SimpleDateFormat("mm");
-                formattedH = formatter.format(now);
-                formattedM = formatter1.format(now1);
-
-                //시간 설정할 경우
-                ImageButton button1 = findViewById(R.id.Time);
-                button1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        TimePickerDialog timePickerDialog = new TimePickerDialog(Input.this, (view, hourOfDay, minute) -> {
-                            h = hourOfDay;
-                            mi = minute;
-                            formattedH = Integer.toString(h);
-                            formattedM = Integer.toString(mi);
-
-                        }, 02, 00, true);
-                        // timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        timePickerDialog.setMessage("출발 시간을 설정하세요");
-
-                        timePickerDialog.show();
-                    }
-
-                });
-
-                if (e == 2 || e == 3 || e == 4 || e == 5 || e == 6)
-                    week = "W";
-                else if (e == 7)
-                    week = "A";
-                else week = "U";
-
+                /*Log.d("inputcnt", cnt);*/
                 Log.d("출발역", "출발역: " + departure_text);
                 Log.d("도착역", "도착역: " + arrival_text);
                 Log.d("현재시간", "now: " + formattedH);
@@ -223,13 +212,16 @@ public class Input extends AppCompatActivity {
 
                             // 받아온 source를 JSONObject로 변환한다.
                             /*JSONObject jsonObj = new JSONObject(sb.toString());
+
                             JsonParser parser = new JsonParser();
                             JsonObject j = parser.parse(String.valueOf(jsonObj)).getAsJsonObject();
+
                             //Gson gson = new GsonBuilder().setPrettyPrinting().create();
                             Gson gson = new GsonBuilder().create();
                             String json = gson.toJson(jsonObj);*/
 
                             /*JSONObject jsonObj = new JSONObject(sb.toString());
+
                             Gson gson = new GsonBuilder().create();
                             String json = gson.toJson(jsonObj);*/
 
@@ -238,14 +230,12 @@ public class Input extends AppCompatActivity {
 
                             Log.d("mylog2", json);
 
-
                             try {
                                 writer = new FileWriter("/storage/emulated/0/Download/Path3.json",false);
                                 writer.write(json);
                                 Intent intent = new Intent(getApplicationContext(), RouteTime.class); //루트타임 페이지 호출
                                 startActivity(intent);
                                 finish();
-
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }finally {
@@ -267,30 +257,6 @@ public class Input extends AppCompatActivity {
 
                 customProgressDialog.setMessage("Loading...");
                 customProgressDialog.show(); //로딩 다이얼로그
-
-
-                //버튼 클릭하면 현재시간, 요일 구함
-                /*Intent intent = new Intent(getApplicationContext(), RouteTime.class); //루트타임 페이지 호출
-                startActivity(intent);*/
-                //////////////////////json 파싱/////////////////////////////////
-
-/*                ArrayList List =new ArrayList();
-                List.add(0,departure_text);
-                List.add(1,arrival_text);
-                List.add(2, formattedNow);
-                List.add(3,week);*/
-
-                /*JSONObject obj = new JSONObject();
-                try {
-                    obj.put("departure", departure_text);
-                    obj.put("arrival", arrival_text);
-                    obj.put("h", formattedH);
-                    obj.put("m", formattedM);
-                    obj.put("week", week);
-                    Log.d("json확인", "확인: " + obj.toString());
-                } catch (JSONException ex) {
-                    ex.printStackTrace();
-                }*/
 
 
             }

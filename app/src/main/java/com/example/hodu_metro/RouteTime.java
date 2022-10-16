@@ -1,53 +1,24 @@
 package com.example.hodu_metro;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.fragment.app.DialogFragment;
-
 import android.annotation.SuppressLint;
-import android.app.AlarmManager;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-
 import android.graphics.Color;
 import android.view.Gravity;
 import android.widget.LinearLayout;
-
 import android.view.View;
 import android.graphics.Typeface;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.kyleduo.switchbutton.SwitchButton;
-
 
 public class RouteTime extends AppCompatActivity {
 
@@ -91,7 +62,6 @@ public class RouteTime extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.route_time);
-
 
         /////////////////////////////////////////////////////
         //최소환승 버튼 클릭시 화면 전환
