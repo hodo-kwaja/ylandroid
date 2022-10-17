@@ -389,7 +389,6 @@ public class RouteTime extends AppCompatActivity {
             }
             else { //경유역, 혼잡도
                 textViewcongestScore.setText(congestScore_t[i]);//혼잡도
-
                 textViewNm.setTextSize(15); //경유역 텍스트 크기
 
                 //텍스트뷰와 레이아웃 연결

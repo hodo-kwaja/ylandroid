@@ -160,20 +160,23 @@ public class RouteCongest extends AppCompatActivity {
             TextView info_textview = new TextView(getApplicationContext());
 
             if(jsonObject.isNull("LowCongestPath")){
-                info_textview.setText("혼잡도 정보를 지원하지 않는 경로입니다.");
-                info_textview.setTextSize(20);
+                info_textview.setText("혼잡도 정보를\n지원하지 않는 경로입니다.");
+                info_textview.setTextSize(18);
+                info_textview.setGravity(Gravity.CENTER);
+                //info_textview.setBackgroundColor(Color.rgb(255, 255, 0));
                 listView.addView(info_textview);
             }
 
             LinearLayout.LayoutParams param8 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT
                     , LinearLayout.LayoutParams.WRAP_CONTENT);
-            //param8.leftMargin = 70; //환승표시 T
-            //param8.topMargin = 60;
+            param8.topMargin = 350;
+            param8.leftMargin=130;
+            param8.width=700;
             param8.gravity=Gravity.CENTER;
+
 
             info_textview.setLayoutParams(param8);
 
-            Log.d("오브젝트 비었는지 확인","22");
             JSONArray jsonArray = jsonObject.getJSONArray("LowCongestPath");
             for (int i = 0; i < jsonArray.length(); i++) {
 
