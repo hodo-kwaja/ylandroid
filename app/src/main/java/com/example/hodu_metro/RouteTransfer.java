@@ -477,91 +477,91 @@ public class RouteTransfer extends AppCompatActivity {
             textViewlineId.setTextColor((Color.rgb(255, 255, 255)));
 
             //혼잡도
-            if (congestScore_t[i].equals("3")) {
+            if (congestScore_t[i]!=null&&congestScore_t[i].equals("3")) {
                 textViewcongestScore.setBackgroundColor(Color.RED);
                 textViewcongestScore.setTextColor(Color.RED);
                 textViewcongestScore.setBackgroundResource(R.drawable.round_red);
-            } else if (congestScore_t[i].equals("2")) {
+            } else if (congestScore_t[i]!=null&&congestScore_t[i].equals("2")) {
                 textViewcongestScore.setBackgroundColor(Color.YELLOW);
                 textViewcongestScore.setTextColor(Color.YELLOW);
                 textViewcongestScore.setBackgroundResource(R.drawable.round_yellow);
-            } else if (congestScore_t[i].equals("1")) {
+            } else if (congestScore_t[i]!=null&&congestScore_t[i].equals("1")) {
                 textViewcongestScore.setBackgroundColor(Color.GREEN);
                 textViewcongestScore.setTextColor(Color.GREEN);
                 textViewcongestScore.setBackgroundResource(R.drawable.round_green);
-            } else if (congestScore_t[i].equals("0")) {
+            } else if (congestScore_t[i]!=null&&congestScore_t[i].equals("0")) {
                 textViewcongestScore.setTextColor(Color.rgb(204, 204, 204));
                 textViewcongestScore.setBackgroundResource(R.drawable.round_white);
             }
 
 
-            if (lineId_t[i].equals("1")) {
+            if (congestScore_t[i]!=null&&lineId_t[i].equals("1")) {
                 T.setBackgroundResource(R.drawable.line_1);
                 textViewlineId.setBackgroundResource(R.drawable.line_1);
-            } else if (lineId_t[i].equals("2")) {
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("2")) {
                 T.setBackgroundResource(R.drawable.line_2);
                 textViewlineId.setBackgroundResource(R.drawable.line_2);
-            } else if (lineId_t[i].equals("3")) {
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("3")) {
                 T.setBackgroundResource(R.drawable.line_3);
                 textViewlineId.setBackgroundResource(R.drawable.line_3);
-            } else if (lineId_t[i].equals("4")) {
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("4")) {
                 T.setBackgroundResource(R.drawable.line_4);
                 textViewlineId.setBackgroundResource(R.drawable.line_4);
-            } else if (lineId_t[i].equals("5")) {
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("5")) {
                 T.setBackgroundResource(R.drawable.line_5);
                 textViewlineId.setBackgroundResource(R.drawable.line_5);
-            } else if (lineId_t[i].equals("6")) {
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("6")) {
                 T.setBackgroundResource(R.drawable.line_6);
                 textViewlineId.setBackgroundResource(R.drawable.line_6);
-            } else if (lineId_t[i].equals("7")) {
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("7")) {
                 T.setBackgroundResource(R.drawable.line_7);
                 textViewlineId.setBackgroundResource(R.drawable.line_7);
-            } else if (lineId_t[i].equals("8")) {
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("8")) {
                 T.setBackgroundResource(R.drawable.line_8);
                 textViewlineId.setBackgroundResource(R.drawable.line_8);
-            } else if (lineId_t[i].equals("9")) {
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("9")) {
                 T.setBackgroundResource(R.drawable.line_9);
                 textViewlineId.setBackgroundResource(R.drawable.line_9);
-            } else if (lineId_t[i].equals("21")) {//인천1호선
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("21")) {//인천1호선
                 T.setBackgroundResource(R.drawable.line_21);
                 textViewlineId.setBackgroundResource(R.drawable.line_21);
-            } else if (lineId_t[i].equals("22")) {//인천2호선
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("22")) {//인천2호선
                 T.setBackgroundResource(R.drawable.line_22);
                 textViewlineId.setBackgroundResource(R.drawable.line_22);
-            } else if (lineId_t[i].equals("102")) {//자기부상철도
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("102")) {//자기부상철도
                 T.setBackgroundResource(R.drawable.line_102);
                 textViewlineId.setBackgroundResource(R.drawable.line_102);
-            } else if (lineId_t[i].equals("107")) {//용인에버라인
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("107")) {//용인에버라인
                 T.setBackgroundResource(R.drawable.line_107);
                 textViewlineId.setBackgroundResource(R.drawable.line_107);
-            } else if (lineId_t[i].equals("109")) {//신분당선
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("109")) {//신분당선
                 T.setBackgroundResource(R.drawable.line_109);
                 textViewlineId.setBackgroundResource(R.drawable.line_109);
-            } else if (lineId_t[i].equals("110")) {//의정부경전철
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("110")) {//의정부경전철
                 T.setBackgroundResource(R.drawable.line_110);
                 textViewlineId.setBackgroundResource(R.drawable.line_110);
-            } else if (lineId_t[i].equals("113")) {//우이신설선
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("113")) {//우이신설선
                 T.setBackgroundResource(R.drawable.line_113);
                 textViewlineId.setBackgroundResource(R.drawable.line_113);
-            } else if (lineId_t[i].equals("114")) {//서해선
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("114")) {//서해선
                 T.setBackgroundResource(R.drawable.line_114);
                 textViewlineId.setBackgroundResource(R.drawable.line_114);
-            } else if (lineId_t[i].equals("115")) {//김포골드라인
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("115")) {//김포골드라인
                 T.setBackgroundResource(R.drawable.line_115);
                 textViewlineId.setBackgroundResource(R.drawable.line_115);
-            } else if (lineId_t[i].equals("104")) { //경의중앙선
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("104")) { //경의중앙선
                 T.setBackgroundResource(R.drawable.line_104);
                 textViewlineId.setBackgroundResource(R.drawable.line_104);
-            } else if (lineId_t[i].equals("116")) {//수인분당선
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("116")) {//수인분당선
                 T.setBackgroundResource(R.drawable.line_116);
                 textViewlineId.setBackgroundResource(R.drawable.line_116);
-            } else if (lineId_t[i].equals("108")) {//경춘선
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("108")) {//경춘선
                 T.setBackgroundResource(R.drawable.line_108);
                 textViewlineId.setBackgroundResource(R.drawable.line_108);
-            } else if (lineId_t[i].equals("112")) {//경강선
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("112")) {//경강선
                 T.setBackgroundResource(R.drawable.line_112);
                 textViewlineId.setBackgroundResource(R.drawable.line_112);
-            } else if (lineId_t[i].equals("101")) {//공항철도
+            } else if (congestScore_t[i]!=null&&lineId_t[i].equals("101")) {//공항철도
                 T.setBackgroundResource(R.drawable.line_101);
                 textViewlineId.setBackgroundResource(R.drawable.line_101);
             }

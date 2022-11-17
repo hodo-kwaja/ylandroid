@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -123,6 +124,8 @@ public class Input extends AppCompatActivity {
         formattedH = formatter.format(now);
         formattedM = formatter1.format(now1);
 
+
+
         //시간 설정할 경우
         ImageButton button1 = findViewById(R.id.Time);
         button1.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +138,11 @@ public class Input extends AppCompatActivity {
                     formattedH = Integer.toString(h);
                     formattedM = Integer.toString(mi);
 
+                    if(formattedH.equals("1")||formattedH.equals("2")||formattedH.equals("3")||formattedH.equals("4")){
+                        formattedH="5";
+                        formattedM="30";
+                    }
+
                 }, 02, 00, true);
                 // timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 timePickerDialog.setMessage("출발 시간을 설정하세요");
@@ -142,6 +150,7 @@ public class Input extends AppCompatActivity {
             }
 
         });
+
 
         //Toast.makeText(getApplicationContext(), h+":" + mi +"분에 출발시간이 설정되었습니다.", Toast.LENGTH_SHORT).show();
         if (e == 2 || e == 3 || e == 4 || e == 5 || e == 6)

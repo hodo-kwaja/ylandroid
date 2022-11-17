@@ -43,10 +43,9 @@
         <activity android:name="com.example.hodu_metro.RouteTransfer" />
         <activity android:name="com.example.hodu_metro.SearchAdapter" />
         <activity android:name="com.example.hodu_metro.TimePickerFragment" />
-        <activity android:name="com.example.hodu_metro.NotificationHelper" />
-        <activity android:name="com.example.hodu_metro.Jsonobj" />
-
-        <receiver android:name="com.example.hodu_metro.AlertReceiver" />
+        <activity
+            android:name="com.example.hodu_metro.ProgressDialog"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

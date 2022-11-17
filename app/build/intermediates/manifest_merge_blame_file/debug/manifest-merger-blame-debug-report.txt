@@ -25,7 +25,7 @@
 15-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:10:22-78
 16
 17    <application
-17-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:12:5-50:19
+17-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:12:5-48:19
 18        android:allowBackup="true"
 18-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:13:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -85,38 +85,34 @@
 45        <activity android:name="com.example.hodu_metro.TimePickerFragment" />
 45-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:39:9-40:54
 45-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:39:19-53
-46        <activity android:name="com.example.hodu_metro.NotificationHelper" />
-46-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:41:9-42:54
-46-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:41:19-53
-47        <activity android:name="com.example.hodu_metro.Jsonobj" />
-47-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:44:9-45:54
-47-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:44:19-42
-48
-49        <receiver android:name="com.example.hodu_metro.AlertReceiver" />
-49-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:47:9-50
-49-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:47:19-48
-50
-51        <provider
-51-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
-52            android:name="androidx.startup.InitializationProvider"
-52-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
-53            android:authorities="com.example.hodu_metro.androidx-startup"
-53-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
-54            android:exported="false" >
-54-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
-55            <meta-data
-55-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
-56                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-56-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
-57                android:value="androidx.startup" />
-57-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
-58            <meta-data
-58-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
-59                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-59-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
-60                android:value="androidx.startup" />
-60-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
-61        </provider>
-62    </application>
-63
-64</manifest>
+46        <activity
+46-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:42:9-45:54
+47            android:name="com.example.hodu_metro.ProgressDialog"
+47-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:43:13-43
+48            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+48-->C:\Users\Public\Documents\hodu_metro\app\src\main\AndroidManifest.xml:44:13-71
+49
+50        <provider
+50-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+51            android:name="androidx.startup.InitializationProvider"
+51-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
+52            android:authorities="com.example.hodu_metro.androidx-startup"
+52-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
+53            android:exported="false" >
+53-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
+54            <meta-data
+54-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+55                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+55-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
+56                android:value="androidx.startup" />
+56-->[androidx.emoji2:emoji2:1.0.0] C:\Users\hongyelim\.gradle\caches\transforms-3\b40e10bbb46bce1215375577e0f45675\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
+57            <meta-data
+57-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+58                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+58-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+59                android:value="androidx.startup" />
+59-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\hongyelim\.gradle\caches\transforms-3\38876a1942f88577fe2896940aa34bc6\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+60        </provider>
+61    </application>
+62
+63</manifest>

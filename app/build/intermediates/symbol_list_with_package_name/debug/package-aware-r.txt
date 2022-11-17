@@ -2409,6 +2409,8 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable hodu_navi
+drawable ic_baseline_hourglass_empty_24
+drawable ic_baseline_settings_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
@@ -2487,6 +2489,8 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable progress_bg
+drawable progress_image
 drawable round_green
 drawable round_red
 drawable round_white
@@ -2513,6 +2517,7 @@ id SHOW_PROGRESS
 id SYM
 id TOP_END
 id TOP_START
+id Time
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -2567,7 +2572,6 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
-id alarm_cancel_btn
 id alertTitle
 id aligned
 id all
@@ -2591,7 +2595,6 @@ id bottom
 id bounce
 id button1
 id buttonPanel
-id button_timepicker
 id cancel_button
 id center
 id centerCrop
@@ -2706,7 +2709,6 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
-id imageView
 id info
 id invisible
 id inward
@@ -2922,8 +2924,6 @@ id textinput_placeholder
 id textinput_prefix_text
 id textinput_suffix_text
 id time
-id time_btn
-id time_text
 id title
 id titleDividerNoCustom
 id title_template
@@ -3064,6 +3064,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_progress
 layout input
 layout m3_alert_dialog
 layout m3_alert_dialog_actions

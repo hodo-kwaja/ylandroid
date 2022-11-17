@@ -8,6 +8,8 @@ color teal_200
 color teal_700
 color white
 drawable hodu_navi
+drawable ic_baseline_hourglass_empty_24
+drawable ic_baseline_settings_24
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable line_1
@@ -35,6 +37,8 @@ drawable line_8
 drawable line_9
 drawable main_hodu
 drawable map2
+drawable progress_bg
+drawable progress_image
 drawable round_green
 drawable round_red
 drawable round_white
@@ -43,15 +47,13 @@ font font
 font nanum
 id Edit1
 id Edit2
-id alarm_cancel_btn
+id Time
 id arrival
 id button1
-id button_timepicker
 id congestion
 id departure
 id duration
 id editSearch
-id imageView
 id label
 id listView
 id min_transfer
@@ -59,9 +61,8 @@ id numStep
 id photoView
 id scrollView
 id shortest_time
-id time_btn
-id time_text
 id transferNum
+layout dialog_progress
 layout input
 layout main
 layout route_congestion

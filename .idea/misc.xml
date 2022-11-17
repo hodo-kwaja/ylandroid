@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/ic_baseline_hourglass_empty_24.xml" value="0.1" />
+        <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/line_1.xml" value="0.1" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/line_2.xml" value="0.1" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/line_3.xml" value="0.1" />
@@ -12,6 +14,8 @@
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/line_7.xml" value="0.1" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/line_8.xml" value="0.1" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/line_9.xml" value="0.1" />
+        <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/progress_bg.xml" value="0.141" />
+        <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/progress_image.xml" value="0.141" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/round.xml" value="0.1" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/round_green.xml" value="0.1" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/round_red.xml" value="0.1" />
@@ -19,8 +23,11 @@
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/round_yellow.xml" value="0.1" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/drawable/tags_rounded_corners.xml" value="0.1" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/font/font.xml" value="0.1" />
+        <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/layout/dialog_progress.xml" value="0.27309782608695654" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/layout/input.xml" value="0.25" />
+        <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/layout/loading.xml" value="0.33" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/layout/main.xml" value="0.2164855072463768" />
+        <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/layout/no_result.xml" value="0.2484375" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/layout/route_congestion.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/layout/route_time.xml" value="0.33" />
         <entry key="..\:/Users/Public/Documents/hodu_metro/app/src/main/res/layout/route_transfer.xml" value="0.2477355072463768" />

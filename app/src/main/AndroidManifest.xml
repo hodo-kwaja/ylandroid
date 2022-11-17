@@ -38,13 +38,11 @@
 
         <activity android:name=".TimePickerFragment"
             tools:ignore="Instantiatable"></activity>
-        <activity android:name=".NotificationHelper"
-            tools:ignore="Instantiatable"></activity>
 
-        <activity android:name=".Jsonobj"
+        <activity
+            android:name=".ProgressDialog"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             tools:ignore="Instantiatable"></activity>
-
-        <receiver android:name=".AlertReceiver"/>
 
 
     </application>
